@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <!-- 启用spring mvc 注解自动装配-->
+    <context:annotation-config />
+    <!-- 注解扫描包，自动扫描包中到controler的类 -->
+    <context:component-scan base-package="study.springMVC" />
+
+
+    <!--手动配置版-->
+    <!-- 控制器(程序员)-->
+    <bean name="/hello.action" class="study.springMVC.SpringMVC_Configuration"></bean>
+    <!-- 映射器(框架) -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+    <!-- 适配器(框架) -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+    <!-- 视图解析器(框架) -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
+</beans>

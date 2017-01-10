@@ -1,0 +1,68 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>StudyJs</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+	<script type="text/javascript">
+		/*内置对象*/
+		//Date对象 主要用来获取当前日期
+		var nowDate = new Date().toLocaleString();
+		window.document.write(nowDate + "<br/>");
+
+		//Math对象 主要用来获取随机数Math.random获取0-1的随机数
+		//Math.floor()向下取整
+		//Math.ceil()向上取整
+		for(var i=1;i<=10;i++){
+			document.write(Math.floor(Math.random()*10000)+"<br/>")
+		}
+
+		//string
+		var str = "Hello Word你好";
+		alert(str.length)
+
+		//Array数组对象
+		var array = new Array("java","ios","php",123,true);
+		for(var i=0;i<array.length;i++){
+			document.write(array[i]+"/")
+		}
+	</script>
+
+	<script type="text/javascript">
+		/*自定义对象*/
+	function  Person(id,name,age) {
+		this.id=id;this.name=name;this.age=age;
+	}
+	var p = new Person(1,"小猪",23);
+	document.write("编号："+p.id+"</br>名称:"+p.name+"</br>年龄:"+p.age);
+	</script>
+
+	<script type="text/javascript">
+		/*浏览器对象:window,document,status,location,history,Screen
+		window:表示浏览器窗口,全局对象、函数以及变量均自动成为window对象的成员，因为window对象使得Javascript与流浪器具有交互性
+		document:内部文档树
+		status:写状态栏
+		location:可以通过hostname/pathname/port/protocol 获得当前页面的地址情况.也可以通过assign进行地址重定向
+		history:记录浏览历史并且可以通过back()/forward()来进行前后跳转,也可以用go()方法来控制
+		Screen:通过availWidth/availHeight获取用户屏幕的信息
+		navigator:用于获取访问者流浪器的信息
+		计时器:var t=setTimeout("javascript语句",毫秒)//
+		Cookie:以字符串拼接的形式把访问者一些常用的变量
+		......*/
+		var url = "index.html";
+		window.document.write("window元素")//向窗口页面写入元素
+		window.open(url)//打开新的页面
+		window.status=window.document.write(nowDate + "<br/>");//status状态栏
+		//location对象,模拟用户在地址栏输入url访问其他页面的情况
+		window.location.href= url;
+		//history对象go方法，演示刷新, 后退：-1  自我刷新：0  向前：1
+//		var history = -1;
+//		window.history.go(history);
+	</script>
+</head>
+
+<body>
+<h1>学习Js四类对象：1.内置对象   2.自定义对象    3.浏览器对象(Window)   4.ActiveX对象(Ajax)</h1>
+</body>
+</html>

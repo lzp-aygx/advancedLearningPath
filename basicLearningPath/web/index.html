@@ -1,0 +1,290 @@
+﻿ <!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>Home</title>
+	<meta charset="utf-8"/>
+	<!--jquery-ui CSS-->
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<!--jqGrid CSS-->
+	<link href="css/ui.jqgrid.css" rel="stylesheet">
+	<style >
+		body{
+			font: 60.5% "Trebuchet MS", sans-serif;
+		}
+		
+		.system_name{
+		
+			font-size:15px;
+		}
+		/*设置jquery-ui自带的ol中selectable插件的样式*/
+		.selectable .ui-selecting { background: white; color: #FFA500; }
+		.selectable .ui-selected { background: white; color: #FFA500; }
+		.selectable { list-style-type: none; margin: 0; padding: 0; width: 100%;height: auto; }
+		.selectable li { margin: 0px; padding: 0.3em; font-size: 1.4em; height: 14px; }
+	</style>
+	<!--JS-->
+	<!--1.核心库-->
+	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+	
+	<!--2.插件库-->
+	 	<!--layout插件1.4-->
+	<script type="text/javascript" src="js/jquery.layout-latest.js"></script>
+		<!--ui插件1.11.2-->
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+
+		<!--jqGrid插件国际化文件-->
+	<script type="text/javascript" src="js/i18n/grid.locale-cn.js"></script>
+		<!--jqGrid插件4.7.0-->
+	<script type="text/javascript" src="js/jquery.jqGrid.src.js"></script>
+	
+	<!--3.系统UI核心代码:就绪代码-->
+	<script type="text/javascript"  src="js/system_core.js"></script>
+	<!--4.系统每个模块的入口程序
+	<script type="text/javascript"  src="js/system/User/grid/userPanelGrid2.js"></script>
+		-->
+</head>
+
+
+<body>
+	<!--头部-->
+	<div class="ui-layout-north"><b class="system_name">WPODSBasicDataMaintenance</b></div>
+	<!--菜单栏-->
+	<div class="ui-layout-west">
+		<div id="accordion">
+			<h3>参数配置管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="parameter_1">参数配置表</li>
+				</ol>
+			</div>
+			<h3>工厂管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="factory_1">工厂映射表</li>
+					<li class="ui-widget-content" id="factory_2">标准用量</li>
+				</ol>
+			</div>
+			<h3>港口管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="port_1">港口映射表</li>
+					<li class="ui-widget-content" id="port_2">标准回厂天数设定</li>
+					<li class="ui-widget-content" id="port_3">特殊回厂天数设定</li>
+				</ol>
+			</div>
+			<h3>废纸编码管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="WPCode_1">废纸定义</li>
+					<li class="ui-widget-content" id="WPCode_2">废纸映射关系</li>
+					<li class="ui-widget-content" id="WPCode_3">废纸分类维护</li>
+				</ol>
+			</div>
+			<h3>采购分类管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="POClassification_1">废纸采购分类定义</li>
+					<li class="ui-widget-content" id="POClassification_2">到货比例</li>
+				</ol>
+			</div>
+			<h3>用量分类管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="dosageClassification_1">废纸用量分类定义</li>
+					<li class="ui-widget-content" id="dosageClassification_2">废纸替代组维护</li>
+				</ol>
+			</div>
+			<h3>价格分组管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="priceClassification_1">废纸价格分组定义</li>
+					<li class="ui-widget-content" id="priceClassification_2">废纸单位耗用维护</li>
+					<li class="ui-widget-content" id="priceClassification_3">废纸价格组对照维护</li>
+				</ol>
+			</div>
+			<h3>计划管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="plan_1">采购计划</li>
+					<li class="ui-widget-content" id="plan_2">月用量计划</li>
+					<li class="ui-widget-content" id="plan_3">日用量计划</li>
+					<li class="ui-widget-content" id="plan_4">上传采购和用量计划</li>
+					<li class="ui-widget-content" id="plan_5">上传拖柜计划</li>
+				</ol>
+			</div>
+			<h3>索赔管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="claim_1">外废一周盈损率</li>
+					<li class="ui-widget-content" id="claim_2">外废标准单耗</li>
+					<li class="ui-widget-content" id="claim_3">外废索赔纸种分类</li>
+					<li class="ui-widget-content" id="claim_4">上传标准单耗</li>
+					<li class="ui-widget-content" id="claim_5">上传车间盈损率</li>
+				</ol>
+			</div>
+			<h3>报表管理</h3>
+			<div>
+				<ol class="selectable">
+					<li class="ui-widget-content" id="report_1">重建废纸库存报表</li>
+					<li class="ui-widget-content" id="report_2">重建废纸索赔报表</li>
+				</ol>
+			</div>
+
+		</div>
+	</div>
+	<!--中间模块面板-->
+	<div class="ui-layout-center">
+		<!--parameter-->
+		<div class="panel" id="parameter_1Panel" >
+			<div class="">
+				<h1>参数配置表</h1>
+			</div>
+		</div>
+		<!--factory-->
+		<div class="panel" id="factory_1Panel">
+			<div class="">
+				<h1>工厂映射表</h1>
+			</div>
+		</div>
+		<div class="panel" id="factory_2Panel">
+			<div class="">
+				<h1>标准用量</h1>
+			</div>
+		</div>
+		<!--port-->
+		<div class="panel" id="port_1Panel">
+			<div class="">
+				<h1>港口映射表</h1>
+			</div>
+		</div>
+		<div class="panel" id="port_2Panel">
+			<div class="">
+				<h1>标准回厂天数设定</h1>
+			</div>
+		</div>
+		<div class="panel" id="port_3Panel">
+			<div class="">
+				<h1>特殊回厂天数设定</h1>
+			</div>
+		</div>
+		<!--WPCode-->
+		<div class="panel" id="WPCode_1Panel">
+			<div class="">
+				<h1>废纸定义</h1>
+			</div>
+		</div>
+		<div class="panel" id="WPCode_2Panel">
+			<div class="">
+				<h1>废纸映射关系</h1>
+			</div>
+		</div>
+		<div class="panel" id="WPCode_3Panel">
+			<div class="">
+				<h1>废纸分类维护</h1>
+			</div>
+		</div>
+		<!--POClassification-->
+		<div class="panel" id="POClassification_1Panel">
+			<div class="">
+				<h1>废纸采购分类定义</h1>
+			</div>
+		</div>
+		<div class="panel" id="POClassification_2Panel">
+			<div class="">
+				<h1>到货比例</h1>
+			</div>
+		</div>
+		<!--dosageClassification-->
+		<div class="panel" id="dosageClassification_1Panel">
+			<div class="">
+				<h1>废纸用量分类定义</h1>
+			</div>
+		</div>
+		<div class="panel" id="dosageClassification_2Panel">
+			<div class="">
+				<h1>废纸替代组维护</h1>
+			</div>
+		</div>
+		<!--priceClassification-->
+		<div class="panel" id="priceClassification_1Panel">
+			<div class="">
+				<h1>废纸价格分组定义</h1>
+			</div>
+		</div>
+		<div class="panel" id="priceClassification_2Panel">
+			<div class="">
+				<h1>废纸单位耗用维护</h1>
+			</div>
+		</div>
+		<div class="panel" id="priceClassification_3Panel">
+			<div class="">
+				<h1>废纸价格组对照维护</h1>
+			</div>
+		</div>
+		<!--plan-->
+		<div class="panel" id="plan_1Panel">
+			<div class="">
+				<h1>采购计划</h1>
+			</div>
+		</div>
+		<div class="panel" id="plan_2Panel">
+			<div class="">
+				<h1>月用量计划</h1>
+			</div>
+		</div>
+		<div class="panel" id="plan_3Panel">
+			<div class="">
+				<h1>日用量计划</h1>
+			</div>
+		</div>
+		<div class="panel" id="plan_4Panel">
+			<div class="">
+				<h1>上传采购和用量计划</h1>
+			</div>
+		</div>
+		<div class="panel" id="plan_5Panel">
+			<div class="">
+				<h1>上传拖柜计划</h1>
+			</div>
+		</div>
+		<!--claim-->
+		<div class="panel" id="claim_1Panel">
+			<div class="">
+				<h1>外废一周盈损率</h1>
+			</div>
+		</div>
+		<div class="panel" id="claim_2Panel">
+			<div class="">
+				<h1>外废标准单耗</h1>
+			</div>
+		</div>
+		<div class="panel" id="claim_3Panel">
+			<div class="">
+				<h1>外废索赔纸种分类</h1>
+			</div>
+		</div>
+		<div class="panel" id="claim_4Panel">
+			<div class="">
+				<h1>上传标准单耗</h1>
+			</div>
+		</div>
+		<div class="panel" id="claim_5Panel">
+			<div class="">
+				<h1>上传车间盈损率</h1>
+			</div>
+		</div>
+		<!--report-->
+		<div class="panel" id="report_1Panel">
+			<div class="">
+				<h1>重建废纸库存报表</h1>
+			</div>
+		</div>
+		<div class="panel" id="report_2Panel">
+			<div class="">
+				<h1>重建废纸索赔报表</h1>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

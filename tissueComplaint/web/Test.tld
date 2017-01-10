@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message>
+    <ns0:Header xmlns:ns0="http://www.leemanpaper.com/schema/technology/framework/MessageEnvelope/v001">
+        <ns0:ReplyHeader>
+            <ns0:TransactionID>?</ns0:TransactionID>
+            <ns0:CorrectionID>?</ns0:CorrectionID>
+            <ns0:TimeStamp>2017-01-09T08:55:57.354+08:00</ns0:TimeStamp>
+            <ns0:DurationSecs>10171</ns0:DurationSecs>
+            <ns0:Result>
+                <ns0:ResultCode>0</ns0:ResultCode>
+            </ns0:Result>
+        </ns0:ReplyHeader>
+    </ns0:Header>
+    <ns0:Body xmlns:ns0="http://www.leemanpaper.com/schema/technology/framework/MessageEnvelope/v001">
+        <ns1:PublishAccountPaymentResponse
+                xmlns:ns1="http://www.leemanpaper.com/wsdl/purchaseLogisticsManagement/RichMaxDataManagement/v001">
+            <ns2:ReplyMessage xmlns:ns2="http://www.leemanpaper.com/schema/technology/framework/Common/v001">
+                <ns2:ResultCode>0</ns2:ResultCode>
+                <ns2:ReplyMessage>应付发票 22124B-01已经存在，请勿重复过数</ns2:ReplyMessage>
+            </ns2:ReplyMessage>
+        </ns1:PublishAccountPaymentResponse>
+    </ns0:Body>
+</Message>
+
+
+        <?xml version="1.0" encoding="UTF-8"?> <Message>
+<ns0:Header xmlns:ns0="http://www.leemanpaper.com/schema/technology/framework/MessageEnvelope/v001">
+    <ns0:RequestHeader>
+        <ns0:TransactionID>?</ns0:TransactionID>
+        <ns0:CorrelationID>?</ns0:CorrelationID>
+        <ns0:ServiceDomain>PurchaseLogisticsManagement</ns0:ServiceDomain>
+        <ns0:ServiceName>RichMaxDataManagement</ns0:ServiceName>
+        <ns0:OperationName>AsyncPublishAccountPaymentToU9</ns0:OperationName>
+        <ns0:Version>001</ns0:Version>
+        <ns0:SourceID>?</ns0:SourceID>
+        <ns0:SourceIDTrail>?,?</ns0:SourceIDTrail>
+        <ns0:TimeStamp>2017-01-09T08:55:47.183+08:00</ns0:TimeStamp>
+    </ns0:RequestHeader>
+</ns0:Header>
+<ns0:Body xmlns:ns0="http://www.leemanpaper.com/schema/technology/framework/MessageEnvelope/v001"
+          xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+    <v0011:PublishAccountPayment xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                                 xmlns:v0011="http://www.leemanpaper.com/wsdl/purchaseLogisticsManagement/RichMaxDataManagement/v001"
+                                 xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                                 xmlns:v0012="http://www.leemanpaper.com/schema/purchaseLogisticsManagement/RichMaxDataManagement/v001"
+                                 xmlns:v001="http://www.leemanpaper.com/schema/technology/framework/Common/v001">
+        <v0012:AccountPayment>
+            <v0012:OrganizationID>GDLM</v0012:OrganizationID>
+            <v0012:TxnNo>7516020340</v0012:TxnNo>
+            <v0012:TxnDate>2016-10-29T00:00:00</v0012:TxnDate>
+            <v0012:SupplierInvoiceNo>22124B-01</v0012:SupplierInvoiceNo>
+            <v0012:PONo>754104472</v0012:PONo>
+            <v0012:SupplierId>2615</v0012:SupplierId>
+            <v0012:ShipmentNo>IGD1612727</v0012:ShipmentNo>
+            <v0012:CurrencyId>USD</v0012:CurrencyId>
+            <v0012:InvoiceQty>340.706</v0012:InvoiceQty>
+            <v0012:DepartmentId>04</v0012:DepartmentId>
+            <v0012:BusinessType>01</v0012:BusinessType>
+            <v0012:AccountPaymentItem>
+                <v0012:InvoiceAmount>59623.55</v0012:InvoiceAmount>
+                <v0012:DueDate>2016-10-29T00:00:00</v0012:DueDate>
+            </v0012:AccountPaymentItem>
+        </v0012:AccountPayment>
+    </v0011:PublishAccountPayment>
+</ns0:Body>
+</Message>
+
+        <?xml version="1.0" encoding="UTF-8"?> <Message>
+<ns0:Header xmlns:ns0="http://www.leemanpaper.com/schema/technology/framework/MessageEnvelope/v001">
+    <ns0:RequestHeader>
+        <ns0:TransactionID>e3b893a2-6571-498f-9a2a-bfcab51741aa</ns0:TransactionID>
+        <ns0:ServiceDomain>PurchaseLogisticsManagement</ns0:ServiceDomain>
+        <ns0:ServiceName>RichMaxDataManagement</ns0:ServiceName>
+        <ns0:OperationName>AsyncPublishAccountPaymentToU9</ns0:OperationName>
+        <ns0:Version>001</ns0:Version>
+        <ns0:SourceID>RM</ns0:SourceID>
+        <ns0:SourceIDTrail>,RM</ns0:SourceIDTrail>
+        <ns0:TimeStamp>2017-01-04T14:39:15.787+08:00</ns0:TimeStamp>
+    </ns0:RequestHeader>
+</ns0:Header>
+<ns0:Body xmlns:ns0="http://www.leemanpaper.com/schema/technology/framework/MessageEnvelope/v001"
+          xmlns:jms1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+    <PublishAccountPayment xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                           xmlns="http://www.leemanpaper.com/wsdl/purchaseLogisticsManagement/RichMaxDataManagement/v001"
+                           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                           xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <AccountPayment
+                xmlns="http://www.leemanpaper.com/schema/purchaseLogisticsManagement/RichMaxDataManagement/v001">
+            <OrganizationID>GDLM</OrganizationID>
+            <TxnNo>170104003</TxnNo>
+            <SupplierInvoiceNo/>
+            <PONo>JKHT1612013</PONo>
+            <SupplierId>2615</SupplierId>
+            <SupplierName>WM Recycle America,LLC</SupplierName>
+            <ShipmentNo>IGD1612011</ShipmentNo>
+            <CurrencyId>USD</CurrencyId>
+            <DepartmentId>04</DepartmentId>
+            <ProductTypeId>1</ProductTypeId>
+            <CustomerId>860</CustomerId>
+            <ClaimNo>GYSSP1612005</ClaimNo>
+            <ClaimType>其它索赔</ClaimType>
+            <BusinessType>01</BusinessType>
+            <AccountPaymentItem>
+                <DueDate>1900-01-01T00:00:00</DueDate>
+            </AccountPaymentItem>
+        </AccountPayment>
+    </PublishAccountPayment>
+</ns0:Body>
+</Message>

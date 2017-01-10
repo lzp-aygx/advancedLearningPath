@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tissueComplaint.dao.BaseDataDao">
+    <!--Page样例-->
+    <select id="findPaperById" resultType="tissueComplaint.entity.Paper" parameterType="int">
+        <![CDATA[
+
+            select * from tblpaper WHERE fid =#{id}
+
+        ]]>
+    </select>
+    <select id="findPapers" resultType="tissueComplaint.entity.Paper">
+        <![CDATA[
+
+            select * from tblpaper
+
+        ]]>
+    </select>
+
+    <!--EmailLog-->
+    <select id="findEmailLogById" resultType="tissueComplaint.entity.EmailLog">
+        <![CDATA[
+
+            select * from tblEmailLog WHERE CompanyId =#{0} and ComplaintNo = #{1}
+
+        ]]>
+    </select>
+    <select id="findEmailLogs" resultType="tissueComplaint.entity.EmailLog">
+        <![CDATA[
+
+            select * from tblEmailLog where CompanyId = #{0}
+
+        ]]>
+    </select>
+    <select id="findAnswers" resultType="tissueComplaint.entity.Answer">
+        <![CDATA[
+
+            select * from tblAnswer where CompanyId = #{0}
+
+        ]]>
+    </select>
+</mapper>

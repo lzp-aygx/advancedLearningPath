@@ -1,0 +1,65 @@
+﻿ <!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>StudyAjax</title>
+	<meta charset="utf-8"/>
+	<!--JS-->
+	<!--1.核心库-->
+	<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+</head>
+<script>
+	/*原生方法创建Ajax对象*/
+	function createAJAX(){
+	var ajax = null;
+	try{
+	ajax = new ActiveXObject("microsoft.xmlhttp");
+	}catch(e1){
+	ajax = new XMLHttpRequest();
+	}
+		return ajax;
+	}
+	/*定位button按钮,并且同事添加单击事件*/
+	document.getElementsByTagName("input")[0].onclick = function () {
+		//1.创建Ajax对象
+		var ajax = createAJAX();
+		//2.Ajax对象准备发送请求
+		var url = "${pageContext.requset.contextpath}/TimeServletAjax?id="+new Date().getTime();
+		var method = "GET";
+		ajax.open(method,url);
+		var content = null;
+		//3.Ajax异步对象真正发送请求体得数据到服务器,如果请求体无数据的话,就用null表示
+		ajax.send(content);
+		//4.监听Ajax异步对象服务端状态的变化,只有状态码变化了,方可触发函数
+		ajax.onreadystatechange = function () {
+			//如果Ajax状态码状态为4
+			if(ajax.readyState == 4){
+				//如果服务器响应码是200
+				if(ajax.readyState == 200){
+					var str =ajax.responseText;
+					document.getElementsByTagName("span")[0].innerHTML = str;
+				}
+			}
+		}
+	}
+</script>
+
+<script>
+	/*Jquery封装后的Ajax*/
+	$.ajax( {
+		url:'addUserAction.action',
+		data : $('#userPanelGridAddForm').serialize(),//序列化表单值
+		type : 'POST',
+		dataType : 'json',
+		success : function() {
+
+		}
+	});
+</script>
+
+<body>
+<h1>Study Ajax</h1>
+当前时间:<span></span><br/>
+<input type="button" value="Ajax"/>
+</body>
+</html>

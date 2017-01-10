@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <title>WebSocket Test</title>
+</head>
+<script language="javascript" type="text/javascript">
+    /*申请一个WebSocket对象
+     WebSocket协议的URL与http协议不同,使用ws://,安全的WebSocket协议使用wss:*/
+    var wsUri = "ws://localhost:8080/learningPath/WebSocket";
+    var output;
+    var input;
+    var evt;
+
+    function init() {
+        output = document.getElementById("output");
+        testWebSocket();
+    }
+
+    function testWebSocket() {
+        websocket = new WebSocket(wsUri);
+        /*WebSocket一共支持四个消息并且所有的操作都是采用消息的方式触发.
+         这样就不会阻塞UI,使得UI有更快的响应时间,得到更好的用户体验
+         1.当Browser和WebSocketServer连接成功后,叫触发onopen消息。
+         2.如果连接失败,发送、接收数据失败或者处理数据出现错误，Browser会触发onerror消息。
+         3.当browser接收到WebSocketServer发送过来的数据的时候，会触发onmessage消息，参数evt中包含server传输过来的数据。
+         4.当Browser接收到WebSocketServer端发送过来的关闭连接请求时,就会触发onclose消息.
+         */
+        websocket.onopen = function (evt) {
+            onOpen(evt)
+        };
+        websocket.onclose = function (evt) {
+            onClose(evt)
+        };
+        websocket.onmessage = function (evt) {
+            onMessage(evt)
+        };
+        websocket.onerror = function (evt) {
+            onError(evt)
+        };
+    }
+
+    function onOpen(evt) {
+        writeToScreen("CONNECTED");
+    }
+
+    function onClose(evt) {
+        writeToScreen("DISCONNECTED");
+    }
+
+    function onMessage(evt) {
+        writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
+
+        //websocket.close(); 
+    }
+
+    function onError(evt) {
+        writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+    }
+
+    function doSend(message) {
+        message = document.getElementById("input").value;
+        writeToScreen("SENT: " + message);
+        websocket.send(message);
+    }
+
+    function writeToScreen(message) {
+        var pre = document.createElement("p");
+        pre.style.wordWrap = "break-word";
+        pre.innerHTML = message;
+        output.appendChild(pre);
+    }
+
+    window.addEventListener("load", init, false);
+</script>
+<body>
+<h2>WebSocket Test</h2>
+<input type="text" name="input" id="input" value="hello world" required="true">
+<input type="button" value="Send message to server" onclick="doSend(input)">
+<br>
+<input type="button" value="close WebSocket" onclick="websocket.close()">
+<input type="button" value="open WebSocket" onclick="websocket.onopen">
+<div id="output"></div>
+</body>
+</html>
