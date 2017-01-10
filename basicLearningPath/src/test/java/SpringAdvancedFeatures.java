@@ -1,5 +1,6 @@
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import study.springAdvancedFeatures.ConditionServiceInterface;
 import study.springAdvancedFeatures.SpringAdvancedFeaturesContext;
 import study.springAdvancedFeatures.SpringAware;
 
@@ -12,8 +13,14 @@ public class SpringAdvancedFeatures {
         ApplicationContext context =
                 new AnnotationConfigApplicationContext(SpringAdvancedFeaturesContext.class);
 
-        //从上下文中获取bean实例
+        //测试SpringAware
         SpringAware springAware = context.getBean(SpringAware.class);
         springAware.outputResult();
+
+        //测试条件Bean
+        ConditionServiceInterface conditionServiceInterface = context.getBean(ConditionServiceInterface.class);
+        System.out.println("OS:"+conditionServiceInterface.showBeanName());
+
+
     }
 }

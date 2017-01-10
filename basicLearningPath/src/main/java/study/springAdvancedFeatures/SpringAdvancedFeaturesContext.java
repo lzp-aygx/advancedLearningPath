@@ -1,7 +1,9 @@
 package study.springAdvancedFeatures;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -25,7 +27,7 @@ import java.util.concurrent.Executor;
 @Configuration
 @ComponentScan(value = "study.springAdvancedFeatures")
 @EnableAsync//开启异步任务的支持
-public class SpringAdvancedFeaturesContext implements AsyncConfigurer{
+public class SpringAdvancedFeaturesContext implements AsyncConfigurer {
 
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
@@ -37,5 +39,22 @@ public class SpringAdvancedFeaturesContext implements AsyncConfigurer{
 
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return null;
+    }
+
+    /*
+    * 基于条件的Bean创建,使用@Conditional注解来创建满足指定条件的Bean
+    * */
+    //通过配置@Conditional注解,符合WindowsCondition条件则实例化windowsBean
+    @Bean
+    @Conditional(WindowsCondition.class)
+    public ConditionServiceInterface windowsBean() {
+        return new WindowsBean();
+    }
+
+    //通过配置@Conditional注解,符合WindowsCondition条件则实例化linuxBean
+    @Bean
+    @Conditional(LinuxCondition.class)
+    public ConditionServiceInterface linuxBean() {
+        return new LinuxBean();
     }
 }
