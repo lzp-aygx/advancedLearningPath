@@ -13,7 +13,7 @@ import java.io.IOException;
  * Created by lizhupeng on 2017/1/10.
  */
 
-/*
+/**
 * Bean对Spring容器的存在是没有意识的,
 * Spring Aware 将会使得Bean与Spring框架进行耦合.让bean意识到容器的存在,并且操作容器里面的服务
 * Spring Aware提供的接口如下;
