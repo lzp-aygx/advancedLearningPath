@@ -1,6 +1,5 @@
 package tissueComplaint;
 
-import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,13 +21,12 @@ public class Application {
 
     @RequestMapping("/")
     String home(){
-        return "Welcome to LeemanTissueComplaint";
+
+        return "Welcome to tissueComplaint";
     }
 
     public static void main(String[] args) throws Exception {
         SpringApplication app = new SpringApplication(Application.class);
-        //设置SpringApplication的Banner,当前设置是屏蔽了Banner
-        app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
 
 

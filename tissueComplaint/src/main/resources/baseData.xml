@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="tissueComplaint.dao.BaseDataDao">
-    <!--Page样例-->
+    <!-- Page样例 -->
     <select id="findPaperById" resultType="tissueComplaint.entity.Paper" parameterType="int">
         <![CDATA[
 
@@ -19,7 +19,7 @@
         ]]>
     </select>
 
-    <!--EmailLog-->
+    <!-- EmailLog -->
     <select id="findEmailLogById" resultType="tissueComplaint.entity.EmailLog">
         <![CDATA[
 

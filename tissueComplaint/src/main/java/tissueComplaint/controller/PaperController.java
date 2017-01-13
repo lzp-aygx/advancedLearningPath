@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/Paper")
+@RequestMapping(value = "/paper")
 public class PaperController {
 
     @Autowired

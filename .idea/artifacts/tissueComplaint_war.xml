@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tissueComplaint:war">
+    <output-path>$PROJECT_DIR$/tissueComplaint/target</output-path>
+    <root id="archive" name="tissueComplaint-1.0.war">
+      <element id="artifact" artifact-name="tissueComplaint:war exploded" />
+    </root>
+  </artifact>
+</component>
