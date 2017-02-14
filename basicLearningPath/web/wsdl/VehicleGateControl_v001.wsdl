@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:ns2="http://www.leemanpaper.com/schema/logistics/transport/VehicleGateControl/v001" xmlns:ns1="http://www.leemanpaper.com/schema/technology/framework/Common/v001" xmlns:ns3="http://www.leemanpaper.com/schema/common/LeeManCommon/v001" xmlns:tns="http://www.leemanpaper.com/wsdl/logistics/transport/VehicleGateControl/v001/concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://www.leemanpaper.com/wsdl/logistics/transport/VehicleGateControl/v001" xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS" xmlns:soap1="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:jndi="http://www.tibco.com/namespaces/ws/2004/soap/apis/jndi" name="Untitled" targetNamespace="http://www.leemanpaper.com/wsdl/logistics/transport/VehicleGateControl/v001/concrete">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.leemanpaper.com/schema/logistics/transport/VehicleGateControl/v001" xmlns:lmcommon="http://www.leemanpaper.com/schema/common/LeeManCommon/v001" targetNamespace="http://www.leemanpaper.com/schema/logistics/transport/VehicleGateControl/v001" version="001.0" elementFormDefault="qualified" attributeFormDefault="qualified">
+            <import namespace="http://www.leemanpaper.com/schema/common/LeeManCommon/v001"/>
+            <complexType name="ExceptionAuthorizationType">
+                <sequence>
+                    <element name="AuthorizedPersonID" type="string"/>
+                    <element name="Reason" type="string" minOccurs="0"/>
+                    <element name="Status" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="VehicleInOutRecordType">
+                <sequence>
+                    <element name="OrganizationID" type="lmcommon:OrganizationIDType"/>
+                    <element name="CardID" type="string"/>
+                    <element name="ControlGateRecordID" type="string"/>
+                    <element name="DetainedCardType" type="string" minOccurs="0"/>
+                    <element name="GuestCardNumber" type="int" minOccurs="0"/>
+                    <element name="InSecurityGuard" type="string" minOccurs="0"/>
+                    <element name="InDateTime" type="dateTime" minOccurs="0"/>
+                    <element name="ExceptionAuthorization" type="tns:ExceptionAuthorizationType" minOccurs="0"/>
+                    <element name="OutSecurityGuard" type="string" minOccurs="0"/>
+                    <element name="OutDateTime" type="dateTime" minOccurs="0"/>
+                    <element name="IsOutOfPremises" type="boolean" minOccurs="0"/>
+                    <element name="ParkingLot" type="string" minOccurs="0"/>
+                    <element name="VehicleLicensePlate" type="lmcommon:VehicleLicensePlateType"/>
+                    <element name="VehicleType" type="string"/>
+                    <element name="NeedWeighing" type="boolean"/>
+                    <element name="entryChannelId" type="string" minOccurs="0"/>
+                    <element name="entryChannelName" type="string" minOccurs="0"/>
+                    <element name="exitChannelId" type="string" minOccurs="0"/>
+                    <element name="exitChannelName" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <element name="ExceptionAuthorization" type="tns:ExceptionAuthorizationType"/>
+            <element name="VehicleInOutRecord" type="tns:VehicleInOutRecordType"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.leemanpaper.com/schema/technology/framework/Common/v001" targetNamespace="http://www.leemanpaper.com/schema/technology/framework/Common/v001" version="001.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <complexType name="ErrorType">
+                <sequence>
+                    <element name="ErrorCode" type="string"/>
+                    <element name="ErrorMessage" type="string" minOccurs="0"/>
+                    <element name="Timestamp" type="dateTime" minOccurs="0"/>
+                    <element name="Transaction" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="ReplyMessageType">
+                <sequence>
+                    <element name="ResultCode" type="string"/>
+                    <element name="ReplyMessage" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="RequestHeaderType">
+                <sequence>
+                    <element name="TransactionID" type="string" minOccurs="0"/>
+                    <element name="CorrelationID" type="string" minOccurs="0"/>
+                    <element name="SourceID" type="string">
+                        <annotation>
+                            <documentation>
+          SourceID is the only mandatory field
+          </documentation>
+                        </annotation>
+                    </element>
+                    <element name="SourceIDTrail" type="string" minOccurs="0"/>
+                </sequence>
+                <anyAttribute processContents="skip" namespace="##any"/>
+            </complexType>
+            <element name="Error" type="tns:ErrorType"/>
+            <element name="ReplyMessage" type="tns:ReplyMessageType"/>
+            <element name="RequestHeader" type="tns:RequestHeaderType"/>
+        </schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.leemanpaper.com/wsdl/logistics/transport/VehicleGateControl/v001" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.leemanpaper.com/schema/technology/framework/Common/v001"/>
+            <xs:import namespace="http://www.leemanpaper.com/schema/logistics/transport/VehicleGateControl/v001"/>
+            <xs:import namespace="http://www.leemanpaper.com/schema/common/LeeManCommon/v001"/>
+            <xs:element name="GenericFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:Error"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetInOutRecordsByCardID">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="OrganizationID" type="ns3:OrganizationIDType"/>
+                        <xs:element name="CardID" type="xs:string"/>
+                        <xs:element name="DateTimeRange" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Start" type="xs:dateTime"/>
+                                    <xs:element name="End" type="xs:dateTime"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="ResultPageNumber">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="0"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="ResultPageSize">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="1"/>
+                                    <xs:maxInclusive value="10"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:anyAttribute processContents="skip" namespace="##any"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetInOutRecordsByCardIDResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns2:VehicleInOutRecord" minOccurs="0" maxOccurs="10"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetInOutRecordsByLicensePlate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="OrganizationID" type="ns3:OrganizationIDType"/>
+                        <xs:element name="VehicleLicensePlate" type="ns3:VehicleLicensePlateType"/>
+                        <xs:element name="DateTimeRange" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Start" type="xs:dateTime"/>
+                                    <xs:element name="End" type="xs:dateTime"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="ResultPageNumber">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="0"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="ResultPageSize">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="1"/>
+                                    <xs:maxInclusive value="10"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="Purposes" type="ns3:PurposesType"/>
+                    </xs:sequence>
+                    <xs:anyAttribute processContents="skip" namespace="##any"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetInOutRecordsByLicensePlateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns2:VehicleInOutRecord" minOccurs="0" maxOccurs="10"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetLatestInOutRecordByCardID">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="OrganizationID" type="ns3:OrganizationIDType"/>
+                        <xs:element name="CardID" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetLatestInOutRecordByCardIDResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns2:VehicleInOutRecord" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetLatestInOutRecordByLicensePlate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="OrganizationID" type="ns3:OrganizationIDType"/>
+                        <xs:element name="VehicleLicensePlate" type="ns3:VehicleLicensePlateType"/>
+                        <xs:element name="Purposes" type="ns3:PurposesType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetLatestInOutRecordByLicensePlateResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns2:VehicleInOutRecord" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishVehicleInOutRecord">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns2:VehicleInOutRecord"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishVehicleInOutRecordFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:Error"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishVehicleInOutRecordResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:ReplyMessage"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.leemanpaper.com/schema/common/LeeManCommon/v001" targetNamespace="http://www.leemanpaper.com/schema/common/LeeManCommon/v001" version="001.5" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <simpleType name="BinIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="ContainerIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <complexType name="ContainerQtyType">
+                <simpleContent>
+                    <extension base="int">
+                        <attribute name="Size" use="required" type="tns:ContainerSizeType"/>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <complexType name="ContainerQuantitiesType">
+                <sequence>
+                    <element name="Quantity" type="tns:ContainerQtyType" maxOccurs="2"/>
+                </sequence>
+            </complexType>
+            <simpleType name="ContainerSizeType">
+                <restriction base="string">
+                    <enumeration value="40ft"/>
+                    <enumeration value="20ft"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="ContainerTypeType">
+                <restriction base="string">
+                    <enumeration value="40"/>
+                    <enumeration value="40HC">
+                        <annotation>
+                            <documentation>High-cube</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40HT">
+                        <annotation>
+                            <documentation>Hard-top</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40OT">
+                        <annotation>
+                            <documentation>Open-top</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40FR">
+                        <annotation>
+                            <documentation>Flatracks</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40PF">
+                        <annotation>
+                            <documentation>Platforms (plats)</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40VL">
+                        <annotation>
+                            <documentation>Ventilated </documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40IL">
+                        <annotation>
+                            <documentation>Insulated</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="BB">
+                        <annotation>
+                            <documentation>Break Bulk</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40TK">
+                        <annotation>
+                            <documentation>Tank</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40CFR">
+                        <annotation>
+                            <documentation>Collapsible Flat Rack</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40RF">
+                        <annotation>
+                            <documentation>Reefer</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40RHC">
+                        <annotation>
+                            <documentation>Reefer High Cube</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="40SD">
+                        <annotation>
+                            <documentation>Standard Dry</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="FR">
+                        <annotation>
+                            <documentation>FR</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="20"/>
+                    <enumeration value="42"/>
+                    <enumeration value="45"/>
+                    <enumeration value="20HC"/>
+                    <enumeration value="20HT"/>
+                    <enumeration value="20OT"/>
+                    <enumeration value="20FR"/>
+                    <enumeration value="20PF"/>
+                    <enumeration value="20VL"/>
+                    <enumeration value="20IL"/>
+                    <enumeration value="20TK"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="CurrencyType">
+                <annotation>
+                    <documentation>Currency codes according to ISO 4217</documentation>
+                </annotation>
+                <restriction base="string">
+                    <enumeration value="AED"/>
+                    <enumeration value="AFN"/>
+                    <enumeration value="ALL"/>
+                    <enumeration value="AMD"/>
+                    <enumeration value="ANG"/>
+                    <enumeration value="AOA"/>
+                    <enumeration value="ARS"/>
+                    <enumeration value="AUD"/>
+                    <enumeration value="AWG"/>
+                    <enumeration value="AZN"/>
+                    <enumeration value="BAM"/>
+                    <enumeration value="BBD"/>
+                    <enumeration value="BDT"/>
+                    <enumeration value="BGN"/>
+                    <enumeration value="BHD"/>
+                    <enumeration value="BIF"/>
+                    <enumeration value="BMD"/>
+                    <enumeration value="BND"/>
+                    <enumeration value="BOB"/>
+                    <enumeration value="BRL"/>
+                    <enumeration value="BSD"/>
+                    <enumeration value="BTN"/>
+                    <enumeration value="BWP"/>
+                    <enumeration value="BYR"/>
+                    <enumeration value="BZD"/>
+                    <enumeration value="CAD"/>
+                    <enumeration value="CDF"/>
+                    <enumeration value="CHF"/>
+                    <enumeration value="CLP"/>
+                    <enumeration value="CNY"/>
+                    <enumeration value="COP"/>
+                    <enumeration value="CRC"/>
+                    <enumeration value="CUC"/>
+                    <enumeration value="CUP"/>
+                    <enumeration value="CVE"/>
+                    <enumeration value="CZK"/>
+                    <enumeration value="DJF"/>
+                    <enumeration value="DKK"/>
+                    <enumeration value="DOP"/>
+                    <enumeration value="DZD"/>
+                    <enumeration value="EGP"/>
+                    <enumeration value="ERN"/>
+                    <enumeration value="ETB"/>
+                    <enumeration value="EUR"/>
+                    <enumeration value="FJD"/>
+                    <enumeration value="FKP"/>
+                    <enumeration value="GBP"/>
+                    <enumeration value="GEL"/>
+                    <enumeration value="GGP"/>
+                    <enumeration value="GHS"/>
+                    <enumeration value="GIP"/>
+                    <enumeration value="GMD"/>
+                    <enumeration value="GNF"/>
+                    <enumeration value="GTQ"/>
+                    <enumeration value="GYD"/>
+                    <enumeration value="HKD"/>
+                    <enumeration value="HNL"/>
+                    <enumeration value="HRK"/>
+                    <enumeration value="HTG"/>
+                    <enumeration value="HUF"/>
+                    <enumeration value="IDR"/>
+                    <enumeration value="ILS"/>
+                    <enumeration value="IMP"/>
+                    <enumeration value="INR"/>
+                    <enumeration value="IQD"/>
+                    <enumeration value="IRR"/>
+                    <enumeration value="ISK"/>
+                    <enumeration value="JEP"/>
+                    <enumeration value="JMD"/>
+                    <enumeration value="JOD"/>
+                    <enumeration value="JPY"/>
+                    <enumeration value="KES"/>
+                    <enumeration value="KGS"/>
+                    <enumeration value="KHR"/>
+                    <enumeration value="KMF"/>
+                    <enumeration value="KPW"/>
+                    <enumeration value="KRW"/>
+                    <enumeration value="KWD"/>
+                    <enumeration value="KYD"/>
+                    <enumeration value="KZT"/>
+                    <enumeration value="LAK"/>
+                    <enumeration value="LBP"/>
+                    <enumeration value="LKR"/>
+                    <enumeration value="LRD"/>
+                    <enumeration value="LSL"/>
+                    <enumeration value="LTL"/>
+                    <enumeration value="LVL"/>
+                    <enumeration value="LYD"/>
+                    <enumeration value="MAD"/>
+                    <enumeration value="MDL"/>
+                    <enumeration value="MGA"/>
+                    <enumeration value="MKD"/>
+                    <enumeration value="MMK"/>
+                    <enumeration value="MNT"/>
+                    <enumeration value="MOP"/>
+                    <enumeration value="MRO"/>
+                    <enumeration value="MUR"/>
+                    <enumeration value="MVR"/>
+                    <enumeration value="MWK"/>
+                    <enumeration value="MXN"/>
+                    <enumeration value="MYR"/>
+                    <enumeration value="MZN"/>
+                    <enumeration value="NAD"/>
+                    <enumeration value="NGN"/>
+                    <enumeration value="NIO"/>
+                    <enumeration value="NOK"/>
+                    <enumeration value="NPR"/>
+                    <enumeration value="NZD"/>
+                    <enumeration value="OMR"/>
+                    <enumeration value="PAB"/>
+                    <enumeration value="PEN"/>
+                    <enumeration value="PGK"/>
+                    <enumeration value="PHP"/>
+                    <enumeration value="PKR"/>
+                    <enumeration value="PLN"/>
+                    <enumeration value="PYG"/>
+                    <enumeration value="QAR"/>
+                    <enumeration value="RON"/>
+                    <enumeration value="RSD"/>
+                    <enumeration value="RUB"/>
+                    <enumeration value="RWF"/>
+                    <enumeration value="SAR"/>
+                    <enumeration value="SBD"/>
+                    <enumeration value="SCR"/>
+                    <enumeration value="SDG"/>
+                    <enumeration value="SEK"/>
+                    <enumeration value="SGD"/>
+                    <enumeration value="SHP"/>
+                    <enumeration value="SLL"/>
+                    <enumeration value="SOS"/>
+                    <enumeration value="SPL"/>
+                    <enumeration value="SRD"/>
+                    <enumeration value="STD"/>
+                    <enumeration value="SVC"/>
+                    <enumeration value="SYP"/>
+                    <enumeration value="SZL"/>
+                    <enumeration value="THB"/>
+                    <enumeration value="TJS"/>
+                    <enumeration value="TMT"/>
+                    <enumeration value="TND"/>
+                    <enumeration value="TOP"/>
+                    <enumeration value="TRY"/>
+                    <enumeration value="TTD"/>
+                    <enumeration value="TVD"/>
+                    <enumeration value="TWD"/>
+                    <enumeration value="TZS"/>
+                    <enumeration value="UAH"/>
+                    <enumeration value="UGX"/>
+                    <enumeration value="USD"/>
+                    <enumeration value="UYU"/>
+                    <enumeration value="UZS"/>
+                    <enumeration value="VEF"/>
+                    <enumeration value="VND"/>
+                    <enumeration value="VUV"/>
+                    <enumeration value="WST"/>
+                    <enumeration value="XAF"/>
+                    <enumeration value="XCD"/>
+                    <enumeration value="XDR"/>
+                    <enumeration value="XOF"/>
+                    <enumeration value="XPF"/>
+                    <enumeration value="YER"/>
+                    <enumeration value="ZAR"/>
+                    <enumeration value="ZMK"/>
+                    <enumeration value="ZWD"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="EmailAddressType">
+                <restriction base="string">
+                    <pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="EventActionType">
+                <restriction base="string">
+                    <enumeration value="Create"/>
+                    <enumeration value="Update"/>
+                    <enumeration value="Delete"/>
+                    <enumeration value="Invalidate"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="FactoryLocationType">
+                <restriction base="string">
+                    <enumeration value="GuangDong"/>
+                    <enumeration value="DongGuan"/>
+                    <enumeration value="ChongQing"/>
+                    <enumeration value="JiangSu"/>
+                    <enumeration value="JiangXi"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="GoodsDeliveryModeType">
+                <restriction base="string">
+                    <enumeration value="SelfPickUp"/>
+                    <enumeration value="Delivered"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="LanguageCodeType">
+                <restriction base="string">
+                    <pattern value="([a-zA-Z]{2}|[iI]-[a-zA-Z]+|[xX]-[a-zA-Z]{1,8})(-[a-zA-Z]{1,8})*"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="LeeManCompanyIDType">
+                <annotation>
+                    <documentation>Deprecated. Should use OrganizationIDType</documentation>
+                </annotation>
+                <restriction base="string"/>
+            </simpleType>
+            <complexType name="MonetaryValueType">
+                <simpleContent>
+                    <extension base="decimal">
+                        <attribute name="Currency" use="required" type="tns:CurrencyType"/>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <simpleType name="OrganizationIDType">
+                <restriction base="string">
+                    <pattern value="[a-zA-Z]+"/>
+                </restriction>
+            </simpleType>
+            <complexType name="PurposesType">
+                <sequence>
+                    <element name="Purpose" type="string" minOccurs="0" maxOccurs="unbounded"/>
+                </sequence>
+            </complexType>
+            <simpleType name="ShipmentNumberType">
+                <restriction base="string">
+                    <pattern value="[A-Z]{3}\d{7}"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="SystemOrgCodeType">
+                <annotation>
+                    <documentation>Organization Code as used in systems like U9 and ETS. Refers to the various LeeMan organization. Like GuangDong LeeMan, DongGuan LeeMan and etc</documentation>
+                </annotation>
+                <restriction base="string">
+                    <pattern value="\d+"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="ThreeLetterCountryCodeType">
+                <annotation>
+                    <documentation>3 letter country code defined in ISO 3166</documentation>
+                </annotation>
+                <restriction base="string">
+                    <enumeration value="ALA"/>
+                    <enumeration value="AFG"/>
+                    <enumeration value="ALB"/>
+                    <enumeration value="DZA"/>
+                    <enumeration value="ASM"/>
+                    <enumeration value="AND"/>
+                    <enumeration value="AGO"/>
+                    <enumeration value="AIA"/>
+                    <enumeration value="ATA"/>
+                    <enumeration value="ATG"/>
+                    <enumeration value="ARG"/>
+                    <enumeration value="ARM"/>
+                    <enumeration value="ABW"/>
+                    <enumeration value="AUS"/>
+                    <enumeration value="AUT"/>
+                    <enumeration value="AZE"/>
+                    <enumeration value="BHS"/>
+                    <enumeration value="BHR"/>
+                    <enumeration value="BGD"/>
+                    <enumeration value="BRB"/>
+                    <enumeration value="BLR"/>
+                    <enumeration value="BEL"/>
+                    <enumeration value="BLZ"/>
+                    <enumeration value="BEN"/>
+                    <enumeration value="BMU"/>
+                    <enumeration value="BTN"/>
+                    <enumeration value="BOL"/>
+                    <enumeration value="BIH"/>
+                    <enumeration value="BWA"/>
+                    <enumeration value="BVT"/>
+                    <enumeration value="BRA"/>
+                    <enumeration value="IOT"/>
+                    <enumeration value="BRN"/>
+                    <enumeration value="BGR"/>
+                    <enumeration value="BFA"/>
+                    <enumeration value="BDI"/>
+                    <enumeration value="KHM"/>
+                    <enumeration value="CMR"/>
+                    <enumeration value="CAN"/>
+                    <enumeration value="CPV"/>
+                    <enumeration value="CYM"/>
+                    <enumeration value="CAF"/>
+                    <enumeration value="TCD"/>
+                    <enumeration value="CHL"/>
+                    <enumeration value="CHN"/>
+                    <enumeration value="CXR"/>
+                    <enumeration value="CCK"/>
+                    <enumeration value="COL"/>
+                    <enumeration value="COM"/>
+                    <enumeration value="COD"/>
+                    <enumeration value="COG"/>
+                    <enumeration value="COK"/>
+                    <enumeration value="CRI"/>
+                    <enumeration value="CIV"/>
+                    <enumeration value="HRV"/>
+                    <enumeration value="CUB"/>
+                    <enumeration value="CYP"/>
+                    <enumeration value="CZE"/>
+                    <enumeration value="DNK"/>
+                    <enumeration value="DJI"/>
+                    <enumeration value="DMA"/>
+                    <enumeration value="DOM"/>
+                    <enumeration value="ECU"/>
+                    <enumeration value="EGY"/>
+                    <enumeration value="SLV"/>
+                    <enumeration value="GNQ"/>
+                    <enumeration value="ERI"/>
+                    <enumeration value="EST"/>
+                    <enumeration value="ETH"/>
+                    <enumeration value="FLK"/>
+                    <enumeration value="FRO"/>
+                    <enumeration value="FJI"/>
+                    <enumeration value="FIN"/>
+                    <enumeration value="FRA"/>
+                    <enumeration value="GUF"/>
+                    <enumeration value="PYF"/>
+                    <enumeration value="ATF"/>
+                    <enumeration value="GAB"/>
+                    <enumeration value="GMB"/>
+                    <enumeration value="GEO"/>
+                    <enumeration value="DEU"/>
+                    <enumeration value="GHA"/>
+                    <enumeration value="GIB"/>
+                    <enumeration value="GRC"/>
+                    <enumeration value="GRL"/>
+                    <enumeration value="GRD"/>
+                    <enumeration value="GLP"/>
+                    <enumeration value="GUM"/>
+                    <enumeration value="GTM"/>
+                    <enumeration value="GIN"/>
+                    <enumeration value="GNB"/>
+                    <enumeration value="GUY"/>
+                    <enumeration value="HTI"/>
+                    <enumeration value="HMD"/>
+                    <enumeration value="HND"/>
+                    <enumeration value="HKG"/>
+                    <enumeration value="HUN"/>
+                    <enumeration value="ISL"/>
+                    <enumeration value="IND"/>
+                    <enumeration value="IDN"/>
+                    <enumeration value="IRN"/>
+                    <enumeration value="IRQ"/>
+                    <enumeration value="IRL"/>
+                    <enumeration value="ISR"/>
+                    <enumeration value="ITA"/>
+                    <enumeration value="JAM"/>
+                    <enumeration value="JPN"/>
+                    <enumeration value="JOR"/>
+                    <enumeration value="KAZ"/>
+                    <enumeration value="KEN"/>
+                    <enumeration value="KIR"/>
+                    <enumeration value="PRK"/>
+                    <enumeration value="KOR"/>
+                    <enumeration value="KWT"/>
+                    <enumeration value="KGZ"/>
+                    <enumeration value="LAO"/>
+                    <enumeration value="LVA"/>
+                    <enumeration value="LBN"/>
+                    <enumeration value="LSO"/>
+                    <enumeration value="LBR"/>
+                    <enumeration value="LBY"/>
+                    <enumeration value="LIE"/>
+                    <enumeration value="LTU"/>
+                    <enumeration value="LUX"/>
+                    <enumeration value="MAC"/>
+                    <enumeration value="MKD"/>
+                    <enumeration value="MDG"/>
+                    <enumeration value="MWI"/>
+                    <enumeration value="MYS"/>
+                    <enumeration value="MDV"/>
+                    <enumeration value="MLI"/>
+                    <enumeration value="MLT"/>
+                    <enumeration value="MHL"/>
+                    <enumeration value="MTQ"/>
+                    <enumeration value="MRT"/>
+                    <enumeration value="MUS"/>
+                    <enumeration value="MYT"/>
+                    <enumeration value="MEX"/>
+                    <enumeration value="FSM"/>
+                    <enumeration value="MDA"/>
+                    <enumeration value="MCO"/>
+                    <enumeration value="MNG"/>
+                    <enumeration value="MSR"/>
+                    <enumeration value="MAR"/>
+                    <enumeration value="MOZ"/>
+                    <enumeration value="MMR"/>
+                    <enumeration value="NAM"/>
+                    <enumeration value="NRU"/>
+                    <enumeration value="NPL"/>
+                    <enumeration value="NLD"/>
+                    <enumeration value="ANT"/>
+                    <enumeration value="NCL"/>
+                    <enumeration value="NZL"/>
+                    <enumeration value="NIC"/>
+                    <enumeration value="NER"/>
+                    <enumeration value="NGA"/>
+                    <enumeration value="NIU"/>
+                    <enumeration value="NFK"/>
+                    <enumeration value="MNP"/>
+                    <enumeration value="NOR"/>
+                    <enumeration value="OMN"/>
+                    <enumeration value="PAK"/>
+                    <enumeration value="PLW"/>
+                    <enumeration value="PSE"/>
+                    <enumeration value="PAN"/>
+                    <enumeration value="PNG"/>
+                    <enumeration value="PRY"/>
+                    <enumeration value="PER"/>
+                    <enumeration value="PHL"/>
+                    <enumeration value="PCN"/>
+                    <enumeration value="POL"/>
+                    <enumeration value="PRT"/>
+                    <enumeration value="PRI"/>
+                    <enumeration value="QAT"/>
+                    <enumeration value="REU"/>
+                    <enumeration value="ROU"/>
+                    <enumeration value="RUS"/>
+                    <enumeration value="RWA"/>
+                    <enumeration value="SHN"/>
+                    <enumeration value="KNA"/>
+                    <enumeration value="LCA"/>
+                    <enumeration value="SPM"/>
+                    <enumeration value="VCT"/>
+                    <enumeration value="WSM"/>
+                    <enumeration value="SMR"/>
+                    <enumeration value="STP"/>
+                    <enumeration value="SAU"/>
+                    <enumeration value="SEN"/>
+                    <enumeration value="SCG"/>
+                    <enumeration value="SYC"/>
+                    <enumeration value="SLE"/>
+                    <enumeration value="SGP"/>
+                    <enumeration value="SVK"/>
+                    <enumeration value="SVN"/>
+                    <enumeration value="SLB"/>
+                    <enumeration value="SOM"/>
+                    <enumeration value="ZAF"/>
+                    <enumeration value="SGS"/>
+                    <enumeration value="ESP"/>
+                    <enumeration value="LKA"/>
+                    <enumeration value="SDN"/>
+                    <enumeration value="SUR"/>
+                    <enumeration value="SJM"/>
+                    <enumeration value="SWZ"/>
+                    <enumeration value="SWE"/>
+                    <enumeration value="CHE"/>
+                    <enumeration value="SYR"/>
+                    <enumeration value="TWN"/>
+                    <enumeration value="TJK"/>
+                    <enumeration value="TZA"/>
+                    <enumeration value="THA"/>
+                    <enumeration value="TLS"/>
+                    <enumeration value="TGO"/>
+                    <enumeration value="TKL"/>
+                    <enumeration value="TON"/>
+                    <enumeration value="TTO"/>
+                    <enumeration value="TUN"/>
+                    <enumeration value="TUR"/>
+                    <enumeration value="TKM"/>
+                    <enumeration value="TCA"/>
+                    <enumeration value="TUV"/>
+                    <enumeration value="UGA"/>
+                    <enumeration value="UKR"/>
+                    <enumeration value="ARE"/>
+                    <enumeration value="GBR"/>
+                    <enumeration value="USA"/>
+                    <enumeration value="UMI"/>
+                    <enumeration value="URY"/>
+                    <enumeration value="UZB"/>
+                    <enumeration value="VUT"/>
+                    <enumeration value="VAT"/>
+                    <enumeration value="VEN"/>
+                    <enumeration value="VNM"/>
+                    <enumeration value="VGB"/>
+                    <enumeration value="VIR"/>
+                    <enumeration value="WLF"/>
+                    <enumeration value="ESH"/>
+                    <enumeration value="YEM"/>
+                    <enumeration value="ZMB"/>
+                    <enumeration value="ZWE"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="TransportationModeType">
+                <restriction base="string">
+                    <enumeration value="Sea"/>
+                    <enumeration value="Land"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="TwoLetterCountryCodeType">
+                <annotation>
+                    <documentation>2 letter country code defined in ISO 3166</documentation>
+                </annotation>
+                <restriction base="string">
+                    <enumeration value="AX"/>
+                    <enumeration value="AF"/>
+                    <enumeration value="AL"/>
+                    <enumeration value="DZ"/>
+                    <enumeration value="AS"/>
+                    <enumeration value="AD"/>
+                    <enumeration value="AO"/>
+                    <enumeration value="AI"/>
+                    <enumeration value="AQ"/>
+                    <enumeration value="AG"/>
+                    <enumeration value="AR"/>
+                    <enumeration value="AM"/>
+                    <enumeration value="AW"/>
+                    <enumeration value="AU"/>
+                    <enumeration value="AT"/>
+                    <enumeration value="AZ"/>
+                    <enumeration value="BS"/>
+                    <enumeration value="BH"/>
+                    <enumeration value="BD"/>
+                    <enumeration value="BB"/>
+                    <enumeration value="BY"/>
+                    <enumeration value="BE"/>
+                    <enumeration value="BZ"/>
+                    <enumeration value="BJ"/>
+                    <enumeration value="BM"/>
+                    <enumeration value="BT"/>
+                    <enumeration value="BO"/>
+                    <enumeration value="BA"/>
+                    <enumeration value="BW"/>
+                    <enumeration value="BV"/>
+                    <enumeration value="BR"/>
+                    <enumeration value="IO"/>
+                    <enumeration value="BN"/>
+                    <enumeration value="BG"/>
+                    <enumeration value="BF"/>
+                    <enumeration value="BI"/>
+                    <enumeration value="KH"/>
+                    <enumeration value="CM"/>
+                    <enumeration value="CA"/>
+                    <enumeration value="CV"/>
+                    <enumeration value="KY"/>
+                    <enumeration value="CF"/>
+                    <enumeration value="TD"/>
+                    <enumeration value="CL"/>
+                    <enumeration value="CN"/>
+                    <enumeration value="CX"/>
+                    <enumeration value="CC"/>
+                    <enumeration value="CO"/>
+                    <enumeration value="KM"/>
+                    <enumeration value="CD"/>
+                    <enumeration value="CG"/>
+                    <enumeration value="CK"/>
+                    <enumeration value="CR"/>
+                    <enumeration value="CI"/>
+                    <enumeration value="HR"/>
+                    <enumeration value="CU"/>
+                    <enumeration value="CY"/>
+                    <enumeration value="CZ"/>
+                    <enumeration value="DK"/>
+                    <enumeration value="DJ"/>
+                    <enumeration value="DM"/>
+                    <enumeration value="DO"/>
+                    <enumeration value="EC"/>
+                    <enumeration value="EG"/>
+                    <enumeration value="SV"/>
+                    <enumeration value="GQ"/>
+                    <enumeration value="ER"/>
+                    <enumeration value="EE"/>
+                    <enumeration value="ET"/>
+                    <enumeration value="FK"/>
+                    <enumeration value="FO"/>
+                    <enumeration value="FJ"/>
+                    <enumeration value="FI"/>
+                    <enumeration value="FR"/>
+                    <enumeration value="GF"/>
+                    <enumeration value="PF"/>
+                    <enumeration value="TF"/>
+                    <enumeration value="GA"/>
+                    <enumeration value="GM"/>
+                    <enumeration value="GE"/>
+                    <enumeration value="DE"/>
+                    <enumeration value="GH"/>
+                    <enumeration value="GI"/>
+                    <enumeration value="GR"/>
+                    <enumeration value="GL"/>
+                    <enumeration value="GD"/>
+                    <enumeration value="GP"/>
+                    <enumeration value="GU"/>
+                    <enumeration value="GT"/>
+                    <enumeration value="GN"/>
+                    <enumeration value="GW"/>
+                    <enumeration value="GY"/>
+                    <enumeration value="HT"/>
+                    <enumeration value="HM"/>
+                    <enumeration value="HN"/>
+                    <enumeration value="HK"/>
+                    <enumeration value="HU"/>
+                    <enumeration value="IS"/>
+                    <enumeration value="IN"/>
+                    <enumeration value="ID"/>
+                    <enumeration value="IR"/>
+                    <enumeration value="IQ"/>
+                    <enumeration value="IE"/>
+                    <enumeration value="IL"/>
+                    <enumeration value="IT"/>
+                    <enumeration value="JM"/>
+                    <enumeration value="JP"/>
+                    <enumeration value="JO"/>
+                    <enumeration value="KZ"/>
+                    <enumeration value="KE"/>
+                    <enumeration value="KI"/>
+                    <enumeration value="KP"/>
+                    <enumeration value="KR"/>
+                    <enumeration value="KW"/>
+                    <enumeration value="KG"/>
+                    <enumeration value="LA"/>
+                    <enumeration value="LV"/>
+                    <enumeration value="LB"/>
+                    <enumeration value="LS"/>
+                    <enumeration value="LR"/>
+                    <enumeration value="LY"/>
+                    <enumeration value="LI"/>
+                    <enumeration value="LT"/>
+                    <enumeration value="LU"/>
+                    <enumeration value="MO"/>
+                    <enumeration value="MK"/>
+                    <enumeration value="MG"/>
+                    <enumeration value="MW"/>
+                    <enumeration value="MY"/>
+                    <enumeration value="MV"/>
+                    <enumeration value="ML"/>
+                    <enumeration value="MT"/>
+                    <enumeration value="MH"/>
+                    <enumeration value="MQ"/>
+                    <enumeration value="MR"/>
+                    <enumeration value="MU"/>
+                    <enumeration value="YT"/>
+                    <enumeration value="MX"/>
+                    <enumeration value="FM"/>
+                    <enumeration value="MD"/>
+                    <enumeration value="MC"/>
+                    <enumeration value="MN"/>
+                    <enumeration value="MS"/>
+                    <enumeration value="MA"/>
+                    <enumeration value="MZ"/>
+                    <enumeration value="MM"/>
+                    <enumeration value="NA"/>
+                    <enumeration value="NR"/>
+                    <enumeration value="NP"/>
+                    <enumeration value="NL"/>
+                    <enumeration value="AN"/>
+                    <enumeration value="NC"/>
+                    <enumeration value="NZ"/>
+                    <enumeration value="NI"/>
+                    <enumeration value="NE"/>
+                    <enumeration value="NG"/>
+                    <enumeration value="NU"/>
+                    <enumeration value="NF"/>
+                    <enumeration value="MP"/>
+                    <enumeration value="NO"/>
+                    <enumeration value="OM"/>
+                    <enumeration value="PK"/>
+                    <enumeration value="PW"/>
+                    <enumeration value="PS"/>
+                    <enumeration value="PA"/>
+                    <enumeration value="PG"/>
+                    <enumeration value="PY"/>
+                    <enumeration value="PE"/>
+                    <enumeration value="PH"/>
+                    <enumeration value="PN"/>
+                    <enumeration value="PL"/>
+                    <enumeration value="PT"/>
+                    <enumeration value="PR"/>
+                    <enumeration value="QA"/>
+                    <enumeration value="RE"/>
+                    <enumeration value="RO"/>
+                    <enumeration value="RU"/>
+                    <enumeration value="RW"/>
+                    <enumeration value="SH"/>
+                    <enumeration value="KN"/>
+                    <enumeration value="LC"/>
+                    <enumeration value="PM"/>
+                    <enumeration value="VC"/>
+                    <enumeration value="WS"/>
+                    <enumeration value="SM"/>
+                    <enumeration value="ST"/>
+                    <enumeration value="SA"/>
+                    <enumeration value="SN"/>
+                    <enumeration value="CS"/>
+                    <enumeration value="SC"/>
+                    <enumeration value="SL"/>
+                    <enumeration value="SG"/>
+                    <enumeration value="SK"/>
+                    <enumeration value="SI"/>
+                    <enumeration value="SB"/>
+                    <enumeration value="SO"/>
+                    <enumeration value="ZA"/>
+                    <enumeration value="GS"/>
+                    <enumeration value="ES"/>
+                    <enumeration value="LK"/>
+                    <enumeration value="SD"/>
+                    <enumeration value="SR"/>
+                    <enumeration value="SJ"/>
+                    <enumeration value="SZ"/>
+                    <enumeration value="SE"/>
+                    <enumeration value="CH"/>
+                    <enumeration value="SY"/>
+                    <enumeration value="TW"/>
+                    <enumeration value="TJ"/>
+                    <enumeration value="TZ"/>
+                    <enumeration value="TH"/>
+                    <enumeration value="TL"/>
+                    <enumeration value="TG"/>
+                    <enumeration value="TK"/>
+                    <enumeration value="TO"/>
+                    <enumeration value="TT"/>
+                    <enumeration value="TN"/>
+                    <enumeration value="TR"/>
+                    <enumeration value="TM"/>
+                    <enumeration value="TC"/>
+                    <enumeration value="TV"/>
+                    <enumeration value="UG"/>
+                    <enumeration value="UA"/>
+                    <enumeration value="AE"/>
+                    <enumeration value="GB"/>
+                    <enumeration value="US"/>
+                    <enumeration value="UM"/>
+                    <enumeration value="UY"/>
+                    <enumeration value="UZ"/>
+                    <enumeration value="VU"/>
+                    <enumeration value="VA"/>
+                    <enumeration value="VE"/>
+                    <enumeration value="VN"/>
+                    <enumeration value="VG"/>
+                    <enumeration value="VI"/>
+                    <enumeration value="WF"/>
+                    <enumeration value="EH"/>
+                    <enumeration value="YE"/>
+                    <enumeration value="ZM"/>
+                    <enumeration value="ZW"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="TypeOfTradeType">
+                <restriction base="string">
+                    <enumeration value="OrdinaryTrade">
+                        <annotation>
+                            <documentation>一般貿易</documentation>
+                        </annotation>
+                    </enumeration>
+                    <enumeration value="ProcessingTrade">
+                        <annotation>
+                            <documentation>加工貿易</documentation>
+                        </annotation>
+                    </enumeration>
+                </restriction>
+            </simpleType>
+            <complexType name="UserActionTimeStampType">
+                <sequence>
+                    <element name="UserID" type="string"/>
+                    <element name="TimeStamp" type="dateTime"/>
+                </sequence>
+            </complexType>
+            <simpleType name="UserIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="VehicleLicensePlateType">
+                <restriction base="string">
+                    <minLength value="5"/>
+                    <maxLength value="15"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="WarehouseCheckInRecordIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="WarehouseCheckOutRecordIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="WarehouseIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="WarehouseTransferRecordIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="WastPaperYardLocationIDType">
+                <restriction base="string"/>
+            </simpleType>
+            <simpleType name="WastePaperSourceType">
+                <restriction base="string">
+                    <enumeration value="Foreign"/>
+                    <enumeration value="Local"/>
+                </restriction>
+            </simpleType>
+            <simpleType name="WastePaperTypeType">
+                <annotation>
+                    <documentation>F:正常,L:散紙,I:質檢紙</documentation>
+                </annotation>
+                <restriction base="string">
+                    <enumeration value="F"/>
+                    <enumeration value="L"/>
+                    <enumeration value="I"/>
+                </restriction>
+            </simpleType>
+            <complexType name="WastePaperYardLocationType">
+                <simpleContent>
+                    <extension base="string">
+                        <attribute name="ID" use="required" type="tns:WastPaperYardLocationIDType"/>
+                        <attribute name="LangCode" use="required" type="tns:LanguageCodeType"/>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <complexType name="WeightType">
+                <simpleContent>
+                    <extension base="decimal">
+                        <attribute name="Unit" use="required" type="tns:WeightUnitType"/>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <simpleType name="WeightUnitType">
+                <restriction base="string">
+                    <enumeration value="kg"/>
+                    <enumeration value="g"/>
+                    <enumeration value="mg"/>
+                    <enumeration value="lb"/>
+                    <enumeration value="mt"/>
+                    <enumeration value="t"/>
+                    <enumeration value="oz"/>
+                </restriction>
+            </simpleType>
+            <element name="BinID" type="tns:BinIDType"/>
+            <element name="ContainerID" type="tns:ContainerIDType"/>
+            <element name="ContainerQty" type="tns:ContainerQtyType"/>
+            <element name="ContainerQuantities" type="tns:ContainerQuantitiesType"/>
+            <element name="Currency" type="tns:CurrencyType"/>
+            <element name="EmailAddress" type="tns:EmailAddressType"/>
+            <element name="EventAction" type="tns:EventActionType"/>
+            <element name="FactoryLocation" type="tns:FactoryLocationType"/>
+            <element name="GoodsDeliveryMode" type="tns:GoodsDeliveryModeType"/>
+            <element name="LanguageCode" type="tns:LanguageCodeType"/>
+            <element name="MonetaryValue" type="tns:MonetaryValueType"/>
+            <element name="OrganizationID" type="tns:OrganizationIDType"/>
+            <element name="ShipmentNumber" type="tns:ShipmentNumberType"/>
+            <element name="SystemOrgCode" type="tns:SystemOrgCodeType"/>
+            <element name="TransportationMode" type="tns:TransportationModeType"/>
+            <element name="TypeOfTrade" type="tns:TypeOfTradeType"/>
+            <element name="UserActionTimeStamp" type="tns:UserActionTimeStampType"/>
+            <element name="UserID" type="tns:UserIDType"/>
+            <element name="VehicleLicensePlate" type="tns:VehicleLicensePlateType"/>
+            <element name="WarehouseCheckInRecordID" type="tns:WarehouseCheckInRecordIDType"/>
+            <element name="WarehouseCheckOutRecordID" type="tns:WarehouseCheckOutRecordIDType"/>
+            <element name="WarehouseID" type="tns:WarehouseIDType"/>
+            <element name="WarehouseTransferRecordID" type="tns:WarehouseTransferRecordIDType"/>
+            <element name="WastePaperSource" type="tns:WastePaperSourceType"/>
+            <element name="WastePaperType" type="tns:WastePaperTypeType"/>
+            <element name="WastePaperYardLocation" type="tns:WastePaperYardLocationType"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:service name="VehicleGateControl_v001">
+        <wsdl:port name="VehicleGateControlHTTPEndpoint" binding="tns:VehicleGateControlHTTPEndpointBinding">
+            <soap:address location="http://172.23.1.82:9990/Logistics/Transport/VehicleGateControl/v001"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="VehicleGateControl">
+        <wsdl:operation name="GetLatestInOutRecordByLicensePlate">
+            <wsdl:input message="tns:GetLatestInOutRecordByLicensePlateRequest"/>
+            <wsdl:output message="tns:GetLatestInOutRecordByLicensePlateResponse"/>
+            <wsdl:fault name="error" message="tns:GetLatestInOutRecordByLicensePlateFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="PublishVehicleInOutRecord">
+            <wsdl:input message="tns:PublishVehicleInOutRecord"/>
+            <wsdl:output message="tns:PublishVehicleInOutRecordResponse"/>
+            <wsdl:fault name="error" message="tns:PublishVehicleInOutRecordFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetLatestInOutRecordByCardID">
+            <wsdl:input message="tns:GetLatestInOutRecordByCardID"/>
+            <wsdl:output message="tns:GetLatestInOutRecordByCardIDResponse"/>
+            <wsdl:fault name="error" message="tns:GetLatestInOutRecordByCardIDFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetInOutRecordsByLicensePlate">
+            <wsdl:input message="tns:GetInOutRecordsByLicensePlate"/>
+            <wsdl:output message="tns:GetInOutRecordsByLicensePlateResponse"/>
+            <wsdl:fault name="error" message="tns:GetInOutRecordsByLicensePlateFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetInOutRecordsByCardID">
+            <wsdl:input message="tns:GetInOutRecordsByCardID"/>
+            <wsdl:output message="tns:GetInOutRecordsByCardIDResponse"/>
+            <wsdl:fault name="error" message="tns:GetInOutRecordsByCardIDFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="VehicleGateControlHTTPEndpointBinding" type="tns:VehicleGateControl">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetLatestInOutRecordByLicensePlate">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/GetLatestInOutRecordByLicensePlate"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetLatestInOutRecordByLicensePlateRequest" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="PublishVehicleInOutRecord">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/PublishVehicleInOutRecord"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:PublishVehicleInOutRecord" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetLatestInOutRecordByCardID">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/GetLatestInOutRecordByCardID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetLatestInOutRecordByCardID" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetInOutRecordsByLicensePlate">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/GetInOutRecordsByLicensePlate"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetInOutRecordsByLicensePlate" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetInOutRecordsByCardID">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/GetInOutRecordsByCardID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetInOutRecordsByCardID" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="VehicleGateControlJMSEndpointBinding" type="tns:VehicleGateControl">
+        <soap:binding style="document" transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+        <jms:binding messageFormat="Text"/>
+        <wsdl:operation name="GetLatestInOutRecordByLicensePlate">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/GetLatestInOutRecordByLicensePlate"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetLatestInOutRecordByLicensePlateRequest" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="PublishVehicleInOutRecord">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/PublishVehicleInOutRecord"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:PublishVehicleInOutRecord" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetLatestInOutRecordByCardID">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/GetLatestInOutRecordByCardID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetLatestInOutRecordByCardID" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetInOutRecordsByLicensePlate">
+            <soap:operation style="document" soapAction="/Logistics/Transport/VehicleGateControl/v001/GetInOutRecordsByLicensePlate"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetInOutRecordsByLicensePlate" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetInOutRecordsByCardID">
+            <soap:operation style="document" soapAction="/Services/Logistics/Transport/VehicleGateControl/v001/GetInOutRecordsByCardID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:GetInOutRecordsByCardID" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="GetLatestInOutRecordByLicensePlateRequest">
+        <wsdl:part name="parameters" element="ns0:GetLatestInOutRecordByLicensePlate"/>
+        <wsdl:part name="request_header" element="ns1:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="GetLatestInOutRecordByLicensePlateResponse">
+        <wsdl:part name="parameters" element="ns0:GetLatestInOutRecordByLicensePlateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetLatestInOutRecordByLicensePlateFault">
+        <wsdl:part name="parameters" element="ns0:GenericFault"/>
+    </wsdl:message>
+    <wsdl:message name="PublishVehicleInOutRecord">
+        <wsdl:part name="parameters" element="ns0:PublishVehicleInOutRecord"/>
+        <wsdl:part name="request_header" element="ns1:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="PublishVehicleInOutRecordResponse">
+        <wsdl:part name="parameters" element="ns0:PublishVehicleInOutRecordResponse"/>
+    </wsdl:message>
+    <wsdl:message name="PublishVehicleInOutRecordFault">
+        <wsdl:part name="parameters" element="ns0:PublishVehicleInOutRecordFault"/>
+    </wsdl:message>
+    <wsdl:message name="GetLatestInOutRecordByCardID">
+        <wsdl:part name="parameters" element="ns0:GetLatestInOutRecordByCardID"/>
+        <wsdl:part name="request_header" element="ns1:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="GetLatestInOutRecordByCardIDResponse">
+        <wsdl:part name="parameters" element="ns0:GetLatestInOutRecordByCardIDResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetLatestInOutRecordByCardIDFault">
+        <wsdl:part name="parameters" element="ns0:GenericFault"/>
+    </wsdl:message>
+    <wsdl:message name="GetInOutRecordsByLicensePlate">
+        <wsdl:part name="parameters" element="ns0:GetInOutRecordsByLicensePlate"/>
+        <wsdl:part name="request_header" element="ns1:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="GetInOutRecordsByLicensePlateResponse">
+        <wsdl:part name="parameters" element="ns0:GetInOutRecordsByLicensePlateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetInOutRecordsByLicensePlateFault">
+        <wsdl:part name="parameters" element="ns0:GenericFault"/>
+    </wsdl:message>
+    <wsdl:message name="GetInOutRecordsByCardID">
+        <wsdl:part name="parameters" element="ns0:GetInOutRecordsByCardID"/>
+        <wsdl:part name="request_header" element="ns1:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="GetInOutRecordsByCardIDResponse">
+        <wsdl:part name="parameters" element="ns0:GetInOutRecordsByCardIDResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetInOutRecordsByCardIDFault">
+        <wsdl:part name="parameters" element="ns0:GenericFault"/>
+    </wsdl:message>
+</wsdl:definitions>

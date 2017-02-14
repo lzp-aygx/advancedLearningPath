@@ -26,9 +26,9 @@
         <module name="tissueComplaint" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="basicLearningPath" target="1.5" />
-      <module name="tissueComplaint" target="1.7" />
+      <module name="tissueComplaint" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

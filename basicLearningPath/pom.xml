@@ -8,6 +8,12 @@
     <artifactId>basicLearningPath</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <start-class>tissueComplaint.Application</start-class>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.7</java.version>
+    </properties>
 
     <dependencies>
         <!--CXF依赖注入-->

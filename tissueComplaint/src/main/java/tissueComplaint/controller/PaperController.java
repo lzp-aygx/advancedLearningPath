@@ -1,10 +1,7 @@
 package tissueComplaint.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tissueComplaint.dao.BaseDataDaoImpl;
 import tissueComplaint.entity.Paper;
 import tissueComplaint.util.CommonResponse;
@@ -32,8 +29,8 @@ public class PaperController {
         return baseDataDaoImpl.findPapers();
     }
 
-    @RequestMapping(value = "/insertPaper")
-    public CommonResponse insertPaper(Paper paper) {
+    @RequestMapping(value = "/insertPaper",method = RequestMethod.POST)
+    public CommonResponse insertPaper(@RequestBody Paper paper) {
         System.out.println(paper);
         CommonResponse commonResponse = new CommonResponse();
         commonResponse.setResultCode("1");
