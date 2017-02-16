@@ -24,12 +24,12 @@
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-simple</artifactId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
             <version>3.1.6</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <artifactId>cxf-rt-transports-http</artifactId>
             <version>3.1.6</version>
         </dependency>
 

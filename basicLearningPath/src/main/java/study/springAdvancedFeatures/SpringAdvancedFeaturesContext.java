@@ -32,9 +32,10 @@ import java.util.concurrent.Executor;
 *   4.@EnableWebMvc:开启Web MVC的配置支持.
 *   5.@EnableConfigurationProperties:开启对@ConfigurationProperties注解配置Bean的支持
 *   6.@EnableJpaRepositories:开启SpringData JPA Repository的支持
-*   7.@EnableCaching: 开启注解式的缓存支持
+*   7.@EnableCaching: 开启注解式的缓存支持*
+*   8.@EnableTransactionManagement开启注解式事务的支持
 *  实现原理有三种:
-*     1.直接导入配置类
+*     1.直接导入配置类 -- 导入配置类可以使用@Import注解来导入配置类
 *     2.依据条件选择配置类
 *     3.动态注册Bean
 * */
@@ -50,7 +51,7 @@ import java.util.concurrent.Executor;
 @Configuration
 @ComponentScan(value = "study.springAdvancedFeatures")
 @EnableAsync//开启异步任务的支持
-@EnableScheduling
+@EnableScheduling//开启spring上下文对计划任务的支持
 public class SpringAdvancedFeaturesContext implements AsyncConfigurer {
 
     public Executor getAsyncExecutor() {
@@ -81,4 +82,5 @@ public class SpringAdvancedFeaturesContext implements AsyncConfigurer {
     public ConditionServiceInterface linuxBean() {
         return new LinuxBean();
     }
+
 }

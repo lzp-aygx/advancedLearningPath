@@ -3,7 +3,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import study.springAdvancedFeatures.ConditionServiceInterface;
 import study.springAdvancedFeatures.SpringAdvancedFeaturesContext;
 import study.springAdvancedFeatures.SpringAware;
-import study.springAdvancedFeatures.SpringJob;
 
 /**
  * Created by lizhupeng on 2017/1/10.
@@ -22,9 +21,11 @@ public class SpringAdvancedFeatures {
         ConditionServiceInterface conditionServiceInterface = context.getBean(ConditionServiceInterface.class);
         System.out.println("OS:"+conditionServiceInterface.showBeanName());
 
-        SpringJob springJob = context.getBean(SpringJob.class);
-        springJob.fixTimeExecution();
-        springJob.reportCurrentTime();
+
+        //定时任务测试
+//        SpringJob springJob = context.getBean(SpringJob.class);
+//        springJob.fixTimeExecution();
+//        springJob.reportCurrentTime();
 
 
     }

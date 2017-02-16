@@ -15,6 +15,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.7</java.version>
         <spring.boot.version>1.4.1.RELEASE</spring.boot.version>
+        <org.apache.cxf.version>3.1.6</org.apache.cxf.version>
     </properties>
     <!--SpringBootParent-->
     <parent>
@@ -64,12 +65,24 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <!--CXF依赖注入-->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>4.3.3.RELEASE</version>
-            <scope>test</scope>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${org.apache.cxf.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>${org.apache.cxf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${org.apache.cxf.version}</version>
+        </dependency>
+
 
     </dependencies>
     <build>
