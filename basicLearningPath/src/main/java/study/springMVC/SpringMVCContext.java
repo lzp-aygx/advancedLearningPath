@@ -26,7 +26,9 @@ import org.springframework.web.servlet.view.JstlView;
 /**
  * 项目中的一些静态资源SpringMVC可以在配置里重写addResourceHandlers来实现*/
 
-
+/**
+ * SpringMVC配置类,必须继承WebMvcConfigurationAdapter
+ * */
 @Configuration
 @EnableWebMvc
 @ComponentScan(value = "study.springMVC")

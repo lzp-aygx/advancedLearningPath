@@ -11,6 +11,10 @@ public class User {
     private String UserName;
     private String Password;
 
+    public User() {
+    }
+
+
     public User( long id, String password,String userName) {
         this.id = id;
         Password = password;
@@ -32,6 +36,7 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+        System.out.println("设置UserId为: "+this.id);
     }
 
     public String getPassword() {

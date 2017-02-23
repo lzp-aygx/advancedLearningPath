@@ -17,6 +17,9 @@ public class HelloController {
         return "index";
     }
 
+    /**produces中的设置可以修改返回数据的类型,
+    如果需要返回对象的类型是json就修改为application/json
+    如果需要返回对象的类型是xml就修改为application/xml*/
     @RequestMapping(value = "/index",produces = "text/plain;charset=UTF-8")
     public @ResponseBody String index(HttpServletRequest request) {
         System.out.println(request.getRequestURI());
