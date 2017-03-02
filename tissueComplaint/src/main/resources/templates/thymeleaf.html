@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>thymeleaf</title>
 </head>
 <body>
-            <h3>访问model</h3>
+<div>访问model</div>
+<div>
+    <table>
+        <caption>thyMeleaf</caption>
+        <thead>
+        <tr>
+            <th scope="col">名字</th>
+            <th scope="col">年龄</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person:${persons}">
+            <td th:text="${person.name}">Aygx</td>
+            <td th:text="${person.age}">25</td>
+        </tr>
+        <tr>
+            <td th:text="${singlePerson.name}">Aygx</td>
+            <td th:text="${singlePerson.age}">25</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

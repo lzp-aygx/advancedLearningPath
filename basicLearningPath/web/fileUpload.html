@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FileUpoad</title>
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/fileUpload/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="js/fileUpload/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="js/fileUpload/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="js/fileUpload/jquery.xdr-transport.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $("#fileuploader").uploadFile({
+                url:"文件上传url",
+                fileName:"myfile"
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="fileuploader">Upload</div>
+</body>
+</html>

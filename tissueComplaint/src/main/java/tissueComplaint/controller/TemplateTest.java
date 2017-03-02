@@ -20,12 +20,14 @@ public class TemplateTest {
     public String template(Model model){
         Person single = new Person("lizhupeng",25);
         List<Person> persons = new ArrayList<Person>();
-        Person p1 = new Person("xx",11);
-        Person p2 = new Person("yy",22);
-        Person p3 = new Person("zz",33);
+        Person p1 = new Person("黎明",50);
+        Person p2 = new Person("张学友",51);
+        Person p3 = new Person("郭富城",52);
+        Person p4 = new Person("刘德华",53);
         persons.add(p1);
         persons.add(p2);
         persons.add(p3);
+        persons.add(p4);
         model.addAttribute("singlePerson",single);
         model.addAttribute("persons",persons);
         return "thymeleaf";
