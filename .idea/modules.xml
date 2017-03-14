@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/advancedPath/advancedPath.iml" filepath="$PROJECT_DIR$/advancedPath/advancedPath.iml" />
       <module fileurl="file://$PROJECT_DIR$/basicLearningPath/basicLearningPath.iml" filepath="$PROJECT_DIR$/basicLearningPath/basicLearningPath.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tissueComplaint/tissueComplaint.iml" filepath="$PROJECT_DIR$/tissueComplaint/tissueComplaint.iml" />
     </modules>
   </component>
 </project>

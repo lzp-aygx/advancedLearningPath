@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/advancedPath" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/advancedPath/src/main/resources/templates/thymeleaf.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/basicLearningPath" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tissueComplaint" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tissueComplaint/src/main/resources/templates/thymeleaf.html" charset="UTF-8" />
   </component>
 </project>

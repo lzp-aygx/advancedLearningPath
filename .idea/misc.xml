@@ -42,7 +42,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/tissueComplaint" />
+    <file type="web" url="file://$PROJECT_DIR$/advancedPath" />
     <type id="Spring" />
   </component>
   <component name="JavadocGenerationManager">
@@ -68,10 +68,11 @@
       <list>
         <option value="$PROJECT_DIR$/basicLearningPath/pom.xml" />
         <option value="$PROJECT_DIR$/tissueComplaint/pom.xml" />
+        <option value="$PROJECT_DIR$/advancedPath/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />

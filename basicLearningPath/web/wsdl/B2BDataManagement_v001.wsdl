@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:ns2="http://www.leemanpaper.com/schema/tissueSalesManagement/B2BDataManagement/v001" xmlns:ns1="http://www.leemanpaper.com/schema/technology/framework/Common/v001" xmlns:tns="http://www.leemanpaper.com/wsdl/tissueSalesManagement/B2BDataManagement/v001/concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://www.leemanpaper.com/wsdl/tissueSalesManagement/B2BDataManagement/v001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://www.leemanpaper.com/wsdl/tissueSalesManagement/B2BDataManagement/v001/concrete">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.leemanpaper.com/schema/technology/framework/Common/v001" targetNamespace="http://www.leemanpaper.com/schema/technology/framework/Common/v001" version="001.4" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <complexType name="CommonEventType">
+                <sequence>
+                    <element name="Header" type="tns:EventHeaderType"/>
+                    <element name="Body" type="tns:EventBodyType"/>
+                </sequence>
+            </complexType>
+            <complexType name="ErrorType">
+                <sequence>
+                    <element name="ErrorCode" type="string"/>
+                    <element name="ErrorMessage" type="string" minOccurs="0"/>
+                    <element name="Timestamp" type="dateTime" minOccurs="0"/>
+                    <element name="Transaction" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="EventBodyType">
+                <sequence>
+                    <any processContents="lax" namespace="##any"/>
+                </sequence>
+            </complexType>
+            <complexType name="EventHeaderExtType">
+                <sequence>
+                    <any processContents="lax" namespace="##any"/>
+                </sequence>
+            </complexType>
+            <complexType name="EventHeaderType">
+                <sequence>
+                    <element name="EventType" type="string"/>
+                    <element name="Version" type="string"/>
+                    <element name="InstanceID" type="string" minOccurs="0"/>
+                    <element name="Timestamp" type="dateTime" minOccurs="0"/>
+                    <element name="Extension" type="tns:EventHeaderExtType" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <simpleType name="EventUpdateActionType">
+                <restriction base="string">
+                    <enumeration value="New"/>
+                    <enumeration value="Update"/>
+                    <enumeration value="Delete"/>
+                    <enumeration value="Enable"/>
+                    <enumeration value="Disable"/>
+                </restriction>
+            </simpleType>
+            <complexType name="EventUpdateHeaderType">
+                <sequence>
+                    <element name="SequenceID" type="long" minOccurs="0"/>
+                    <element name="Action" type="tns:EventUpdateActionType"/>
+                    <element name="ActionEffectiveDateTime" type="dateTime"/>
+                </sequence>
+            </complexType>
+            <complexType name="OperationInfoType">
+                <sequence>
+                    <element name="IsValid" type="boolean"/>
+                    <element name="CreaterName" type="string" minOccurs="0"/>
+                    <element name="CreateOn" type="dateTime" minOccurs="0"/>
+                    <element name="LastUpdaterName" type="string" minOccurs="0"/>
+                    <element name="LastUpdateOn" type="dateTime" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <simpleType name="OperatorType">
+                <restriction base="string"/>
+            </simpleType>
+            <complexType name="PropertyType">
+                <simpleContent>
+                    <extension base="string">
+                        <attribute name="Name" use="required" type="string"/>
+                    </extension>
+                </simpleContent>
+            </complexType>
+            <complexType name="QueryOperationInfoType">
+                <sequence>
+                    <element name="IsValid" type="boolean" minOccurs="0"/>
+                    <element name="CreateFrom" type="date" minOccurs="0"/>
+                    <element name="CreateTo" type="date" minOccurs="0"/>
+                    <element name="LastUpdateFrom" type="date" minOccurs="0"/>
+                    <element name="LastUpdateTo" type="date" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="ReplyMessageType">
+                <sequence>
+                    <element name="ResultCode" type="string"/>
+                    <element name="ReplyMessage" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="RequestHeaderType">
+                <sequence>
+                    <element name="TransactionID" type="string" minOccurs="0"/>
+                    <element name="CorrelationID" type="string" minOccurs="0"/>
+                    <element name="SourceID" type="string">
+                        <annotation>
+                            <documentation>
+          SourceID is the only mandatory field
+          </documentation>
+                        </annotation>
+                    </element>
+                    <element name="SourceIDTrail" type="string" minOccurs="0"/>
+                </sequence>
+                <anyAttribute processContents="skip" namespace="##any"/>
+            </complexType>
+            <element name="CommonEvent" type="tns:CommonEventType"/>
+            <element name="Error" type="tns:ErrorType"/>
+            <element name="EventBody" type="tns:EventBodyType"/>
+            <element name="EventHeader" type="tns:EventHeaderType"/>
+            <element name="EventUpdateAction" type="tns:EventUpdateActionType"/>
+            <element name="EventUpdateHeader" type="tns:EventUpdateHeaderType"/>
+            <element name="OperationInfo" type="tns:OperationInfoType"/>
+            <element name="Operator" type="tns:OperatorType"/>
+            <element name="Property" type="tns:PropertyType"/>
+            <element name="QueryOperationInfo" type="tns:QueryOperationInfoType"/>
+            <element name="ReplyMessage" type="tns:ReplyMessageType"/>
+            <element name="RequestHeader" type="tns:RequestHeaderType"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.leemanpaper.com/schema/tissueSalesManagement/B2BDataManagement/v001" xmlns:common="http://www.leemanpaper.com/schema/technology/framework/Common/v001" xmlns:lmcommon="http://www.leemanpaper.com/schema/common/LeeManCommon/v001" targetNamespace="http://www.leemanpaper.com/schema/tissueSalesManagement/B2BDataManagement/v001" version="001.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <complexType name="ConsigneeType">
+                <sequence>
+                    <element name="Area" type="string" minOccurs="0"/>
+                    <element name="Address" type="string" minOccurs="0"/>
+                    <element name="Name" type="string" minOccurs="0"/>
+                    <element name="Zip" type="string" minOccurs="0"/>
+                    <element name="Mobile" type="string" minOccurs="0"/>
+                    <element name="Telephone" type="string" minOccurs="0"/>
+                    <element name="Email" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="DeliveryInfoType">
+                <sequence>
+                    <element name="SourceId" type="string" minOccurs="0"/>
+                    <element name="DeliveryNoteNo" type="string" minOccurs="0"/>
+                    <element name="OrderNo" type="string" minOccurs="0"/>
+                    <element name="CourierNumber" type="string" minOccurs="0"/>
+                    <element name="ExpressCompany" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="GoodsType">
+                <sequence>
+                    <element name="ProductId" type="string" minOccurs="0"/>
+                    <element name="Quantity" type="string" minOccurs="0"/>
+                    <element name="UnitPrice" type="decimal" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="LoginInfoType">
+                <sequence>
+                    <element name="OrganizationId" type="string" minOccurs="0"/>
+                    <element name="UserId" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="ODSOrderInfoType">
+                <sequence>
+                    <element name="MemberId" type="string" minOccurs="0"/>
+                    <element name="AddressId" type="string" minOccurs="0"/>
+                    <element name="Consignee" type="tns:ConsigneeType" minOccurs="0"/>
+                    <element name="ShopId" type="string" minOccurs="0"/>
+                    <element name="Goods" type="tns:GoodsType" minOccurs="0" maxOccurs="unbounded"/>
+                    <element name="IsCod" type="boolean" minOccurs="0"/>
+                    <element name="IsTax" type="boolean" minOccurs="0"/>
+                    <element name="BranchId" type="string" minOccurs="0"/>
+                    <element name="CustomerMemo" type="string" minOccurs="0"/>
+                    <element name="CostShipping" type="decimal" minOccurs="0"/>
+                    <element name="TaxTitle" type="string" minOccurs="0"/>
+                    <element name="Discount" type="decimal" minOccurs="0"/>
+                    <element name="TotalAmount" type="decimal" minOccurs="0"/>
+                    <element name="RelateOrderNo" type="string" minOccurs="0"/>
+                    <element name="OrderMemo" type="string" minOccurs="0"/>
+                    <element name="RegTime" type="dateTime" minOccurs="0"/>
+                    <element name="TradeTime" type="dateTime" minOccurs="0"/>
+                    <element name="ChkTime" type="dateTime" minOccurs="0"/>
+                    <element name="PaymentTime" type="dateTime" minOccurs="0"/>
+                    <element name="StockOutTime" type="dateTime" minOccurs="0"/>
+                    <element name="SndTime" type="dateTime" minOccurs="0"/>
+                    <element name="LastModifyTime" type="dateTime" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="OrderCancelInfoType">
+                <sequence>
+                    <element name="RelateOrderNo" type="string" minOccurs="0"/>
+                    <element name="ShopId" type="string" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <complexType name="OrderInfoType">
+                <sequence>
+                    <element name="MemberId" type="string" minOccurs="0"/>
+                    <element name="AddressId" type="string" minOccurs="0"/>
+                    <element name="Consignee" type="tns:ConsigneeType" minOccurs="0"/>
+                    <element name="ShopId" type="string" minOccurs="0"/>
+                    <element name="Goods" type="tns:GoodsType" minOccurs="0" maxOccurs="unbounded"/>
+                    <element name="IsCod" type="boolean" minOccurs="0"/>
+                    <element name="IsTax" type="boolean" minOccurs="0"/>
+                    <element name="BranchId" type="string" minOccurs="0"/>
+                    <element name="CustomerMemo" type="string" minOccurs="0"/>
+                    <element name="CostShipping" type="decimal" minOccurs="0"/>
+                    <element name="TaxTitle" type="string" minOccurs="0"/>
+                    <element name="Discount" type="decimal" minOccurs="0"/>
+                    <element name="TotalAmount" type="decimal" minOccurs="0"/>
+                    <element name="RelateOrderNo" type="string" minOccurs="0"/>
+                    <element name="OrderMemo" type="string" minOccurs="0"/>
+                    <element name="PaymentTime" type="dateTime" minOccurs="0"/>
+                </sequence>
+            </complexType>
+            <element name="DeliveryInfo" type="tns:DeliveryInfoType"/>
+            <element name="LoginInfo" type="tns:LoginInfoType"/>
+            <element name="ODSOrderInfo" type="tns:ODSOrderInfoType"/>
+            <element name="OrderCancelInfo" type="tns:OrderCancelInfoType"/>
+            <element name="OrderInfo" type="tns:OrderInfoType"/>
+        </schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.leemanpaper.com/wsdl/tissueSalesManagement/B2BDataManagement/v001" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.leemanpaper.com/schema/technology/framework/Common/v001"/>
+            <xs:import namespace="http://www.leemanpaper.com/schema/tissueSalesManagement/B2BDataManagement/v001"/>
+            <xs:element name="CancelOrderInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="_token" type="xs:string" minOccurs="0"/>
+                        <xs:element ref="ns2:OrderCancelInfo"  minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CancelOrderInfoFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Error" type="ns1:ErrorType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CancelOrderInfoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:ReplyMessage"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishDeliveryInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="SourceId" type="xs:string"/>
+                        <xs:element name="DeliveryNoteNo" type="xs:string" minOccurs="0"/>
+                        <xs:element name="OrderNo" type="xs:string"/>
+                        <xs:element name="CourierNumber" type="xs:string"/>
+                        <xs:element name="ExpressCompany" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishDeliveryInfoFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Error" type="ns1:ErrorType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishDeliveryInfoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:ReplyMessage"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishOrderInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="_token" type="xs:string" minOccurs="0"/>
+                        <xs:element ref="ns2:OrderInfo" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishOrderInfoFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Error" type="ns1:ErrorType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PublishOrderInfoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns1:ReplyMessage"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="B2BDataManagement_v001">
+        <wsdl:port name="B2BDataManagementHTTPEndpoint" binding="tns:B2BDataManagementHTTPEndpointBinding">
+            <soap:address location="http://localhost:9855/TissueSalesManagement/B2BDataManagement/v001"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="B2BDataManagement">
+        <wsdl:operation name="PublishDeliveryInfo">
+            <wsdl:input message="tns:PublishDeliveryInfo"/>
+            <wsdl:output message="tns:PublishDeliveryInfoResponse"/>
+            <wsdl:fault name="error" message="tns:PublishDeliveryInfoFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="CancelOrderInfo">
+            <wsdl:input message="tns:CancelOrderInfo"/>
+            <wsdl:output message="tns:CancelOrderInfoResponse"/>
+            <wsdl:fault name="error" message="tns:CancelOrderInfoFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="PublishOrderInfo">
+            <wsdl:input message="tns:PublishOrderInfo"/>
+            <wsdl:output message="tns:PublishOrderInfoResponse"/>
+            <wsdl:fault name="error" message="tns:PublishOrderInfoFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="B2BDataManagementHTTPEndpointBinding" type="tns:B2BDataManagement">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="PublishDeliveryInfo">
+            <soap:operation style="document" soapAction="/TissueSalesManagement/B2BDataManagement/v001/PublishDeliveryInfo"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="CancelOrderInfo">
+            <soap:operation style="document" soapAction="/TissueSalesManagement/B2BDataManagement/v001/CancelOrderInfo"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:CancelOrderInfo" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="PublishOrderInfo">
+            <soap:operation style="document" soapAction="/TissueSalesManagement/B2BDataManagement/v001/PublishOrderInfo"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+                <soap:header use="literal" message="tns:PublishOrderInfo" part="request_header"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault use="literal" name="error"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="PublishDeliveryInfo">
+        <wsdl:part name="parameters" element="ns0:PublishDeliveryInfo"/>
+    </wsdl:message>
+    <wsdl:message name="PublishDeliveryInfoResponse">
+        <wsdl:part name="parameters" element="ns0:PublishDeliveryInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="PublishDeliveryInfoFault">
+        <wsdl:part name="parameters" element="ns0:PublishDeliveryInfoFault"/>
+    </wsdl:message>
+    <wsdl:message name="CancelOrderInfo">
+        <wsdl:part name="parameters" element="ns0:CancelOrderInfo"/>
+        <wsdl:part name="request_header" element="ns1:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="CancelOrderInfoResponse">
+        <wsdl:part name="parameters" element="ns0:CancelOrderInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CancelOrderInfoFault">
+        <wsdl:part name="parameters" element="ns0:CancelOrderInfoFault"/>
+    </wsdl:message>
+    <wsdl:message name="PublishOrderInfo">
+        <wsdl:part name="parameters" element="ns0:PublishOrderInfo"/>
+        <wsdl:part name="request_header" element="ns1:RequestHeader"/>
+    </wsdl:message>
+    <wsdl:message name="PublishOrderInfoResponse">
+        <wsdl:part name="parameters" element="ns0:PublishOrderInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="PublishOrderInfoFault">
+        <wsdl:part name="parameters" element="ns0:PublishOrderInfoFault"/>
+    </wsdl:message>
+</wsdl:definitions>

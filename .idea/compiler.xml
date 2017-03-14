@@ -22,11 +22,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="advancedPath" />
         <module name="basicLearningPath" />
         <module name="tissueComplaint" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
+      <module name="advancedPath" target="1.7" />
       <module name="basicLearningPath" target="1.5" />
       <module name="tissueComplaint" target="1.7" />
     </bytecodeTargetLevel>

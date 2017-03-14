@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="advancedPath.dao.SDMSDao">
+    <!-- Page样例 -->
+    <select id="findRollInfos" resultType="advancedPath.domain.RollInfo" >
+        <![CDATA[
+
+            select * from roll_info_m_apply
+
+        ]]>
+    </select>
+
+    <select id="findRollInfoItemByRollNo" resultType="advancedPath.domain.RollInfoItem" parameterType="string">
+        <![CDATA[
+
+            select * from roll_info_m_apply_item where ori_roll_no = #{roolNo}
+
+        ]]>
+    </select>
+
+</mapper>
