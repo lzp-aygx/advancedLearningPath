@@ -7,9 +7,11 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 /**
  * Created by lizhupeng on 2017/1/10.
  */
+
 public class LinuxCondition implements Condition{
 
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        return context.getEnvironment().getProperty("os.name").contains("Linux");
+        return true;
+//                context.getEnvironment().getProperty("os.name").contains("Linux");
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 public class WindowsCondition implements Condition{
 
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        return context.getEnvironment().getProperty("os.name").contains("Windows");
+        return true;
+//                context.getEnvironment().getProperty("os.name").contains("Windows");
     }
 }

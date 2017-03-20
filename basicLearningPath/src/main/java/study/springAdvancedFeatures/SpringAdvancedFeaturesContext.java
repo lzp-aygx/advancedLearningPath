@@ -1,9 +1,7 @@
 package study.springAdvancedFeatures;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -66,21 +64,21 @@ public class SpringAdvancedFeaturesContext implements AsyncConfigurer {
         return null;
     }
 
-    /*
-    * 基于条件的Bean创建,使用@Conditional注解来创建满足指定条件的Bean
-    * */
-    //通过配置@Conditional注解,符合WindowsCondition条件则实例化windowsBean
-    @Bean
-    @Conditional(WindowsCondition.class)
-    public ConditionServiceInterface windowsBean() {
-        return new WindowsBean();
-    }
-
-    //通过配置@Conditional注解,符合WindowsCondition条件则实例化linuxBean
-    @Bean
-    @Conditional(LinuxCondition.class)
-    public ConditionServiceInterface linuxBean() {
-        return new LinuxBean();
-    }
+//    /*
+//    * 基于条件的Bean创建,使用@Conditional注解来创建满足指定条件的Bean
+//    * */
+//    //通过配置@Conditional注解,符合WindowsCondition条件则实例化windowsBean
+//    @Bean
+//    @Conditional(WindowsCondition.class)
+//    public ConditionServiceInterface windowsBean() {
+//        return new WindowsBean();
+//    }
+//
+//    //通过配置@Conditional注解,符合WindowsCondition条件则实例化linuxBean
+//    @Bean
+//    @Conditional(LinuxCondition.class)
+//    public ConditionServiceInterface linuxBean() {
+//        return new LinuxBean();
+//    }
 
 }

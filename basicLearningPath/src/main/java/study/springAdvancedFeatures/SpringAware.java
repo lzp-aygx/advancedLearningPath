@@ -48,4 +48,5 @@ public class SpringAware implements BeanNameAware, ResourceLoaderAware {
             e.printStackTrace();
         }
     }
+
 }

@@ -17,7 +17,7 @@ public class SpringAdvancedFeatures {
         SpringAware springAware = context.getBean(SpringAware.class);
         springAware.outputResult();
 
-        //测试条件Bean
+        //测试条件Bean,面向接口获取条件实例的Bean
         ConditionServiceInterface conditionServiceInterface = context.getBean(ConditionServiceInterface.class);
         System.out.println("OS:"+conditionServiceInterface.showBeanName());
 
