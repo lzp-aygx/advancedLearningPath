@@ -1,13 +1,14 @@
 package study.springMVC;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 /**
  * Created by lizhupeng on 2017/1/11.
@@ -33,12 +34,24 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @ComponentScan(value = "study.springMVC")
 public class SpringMVCContext extends WebMvcConfigurerAdapter{
-//继承WebMvcConfigurerAdapter可以重写其方法进而可以对SpringMVC进行配置
-    public InternalResourceViewResolver viewResolver() {
+
+//    public void configureViewResolvers(ViewResolverRegistry registry){
+//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//        viewResolver.setPrefix("/views/");
+//        viewResolver.setSuffix(".jsp");
+//        viewResolver.setExposeContextBeansAsAttributes(true);
+//        registry.viewResolver(viewResolver);
+//    }
+
+
+    //继承WebMvcConfigurerAdapter可以重写其方法进而可以对SpringMVC进行配置
+    //配置视图解析器
+    @Bean
+    public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/classes/views/");
+        viewResolver.setPrefix("classes/views/");
         viewResolver.setSuffix(".jsp");
-        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setExposeContextBeansAsAttributes(true);
         return viewResolver;
     }
 

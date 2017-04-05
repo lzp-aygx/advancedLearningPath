@@ -1,6 +1,7 @@
 package study.springAdvancedFeatures;
 
 import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Conditional(WindowsCondition.class)
+@Primary
 public class WindowsBean implements ConditionServiceInterface{
 
     public String showBeanName() {
