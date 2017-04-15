@@ -1,9 +1,17 @@
 package study.springMVC;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+import org.thymeleaf.templateresolver.TemplateResolver;
 
 /**
  * Created by lizhupeng on 2017/1/11.
@@ -30,37 +38,48 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 //继承WebMvcConfigurerAdapter可以重写其方法进而可以对SpringMVC进行配置
 public class SpringMVCContext extends WebMvcConfigurerAdapter{
 
-    public void configureViewResolvers(ViewResolverRegistry registry){
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/classes/views/");
-        viewResolver.setSuffix(".jsp");
-        registry.viewResolver(viewResolver);
-    }
-
-    //配置视图解析器
-//    @Bean
-//    public InternalResourceViewResolver viewResolver() {
+    /**配置JSP视图解析器*/
+//    public void configureViewResolvers(ViewResolverRegistry registry){
 //        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 //        viewResolver.setPrefix("/WEB-INF/classes/views/");
 //        viewResolver.setSuffix(".jsp");
-//        viewResolver.setViewClass(JstlView.class);
-//        return viewResolver;
+//        registry.viewResolver(viewResolver);
 //    }
 
-
-    //addResourceHandlers方法配置静态资源
+    /**通过重写addResourceHandlers方法来配置静态资源*/
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         //addResourceHandler:指定对外暴露的访问地址
         //addResourceLocations:指定文件放置的目录
         registry.addResourceHandler("/staticResources/**").addResourceLocations("classpath:/staticResources/");
     }
 
-
-    //addInterceptors添加拦截器
+    /**通过重写addInterceptors方法来配置拦截器*/
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new DemoInterCeptor());
-
     }
 
+    /**配置ThymeleafViewResolver视图解析器*/
+    @Bean
+    public ViewResolver viewResolver(SpringTemplateEngine templateEngine){
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine);
+        return viewResolver;
+    }
+
+    @Bean
+    public SpringTemplateEngine templateEngine(TemplateResolver templateResolver){
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+        return templateEngine;
+    }
+
+    @Bean
+    public TemplateResolver templateResolver(){
+        TemplateResolver templateResolver = new ServletContextTemplateResolver();
+        templateResolver.setPrefix("/WEB-INF/classes/templates/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode("HTML5");
+        return templateResolver;
+    }
 
 }

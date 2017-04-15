@@ -16,16 +16,9 @@ import javax.servlet.ServletException;
  * */
 public class MyServletInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
-//        AnnotationConfigWebApplicationContext ctx =
-//                new AnnotationConfigWebApplicationContext();
-//        ctx.register(MyWebConfig.class);
-//        ctx.setServletContext(servletContext);
-//
 //        ServletRegistration.Dynamic servlet =
 //                servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
 //        servlet.addMapping("/");
 //        servlet.setLoadOnStartup(1);
-
-
     }
 }
