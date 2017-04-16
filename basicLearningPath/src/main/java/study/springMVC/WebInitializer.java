@@ -8,7 +8,6 @@ package study.springMVC;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import study.springAdvancedFeatures.SpringAdvancedFeaturesContext;
 
-import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
 /**
@@ -41,15 +40,15 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     //指定DispatcherServlet的映射地址
     protected String[] getServletMappings() {
-        return new String[]{"/"};
+        return new String[]{"/*"};
     }
 
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         //为DispatcherServlet配置multipart解析器,其中解析器的构造函数的参数分别为:
         //1.临时目录,2.单个上传文件的最大容量
         //3.整个multipart请求的最大总容量,4.上传过程中写入临时目录的开始大小
-        registration.setMultipartConfig(
-                new MultipartConfigElement("/fileUpload", fileMAXSize, multipartMAXSize, fileUploadWriteSize)
-        );
+//        registration.setMultipartConfig(
+//                new MultipartConfigElement("E:/fileUpload/temp", fileMAXSize, multipartMAXSize, fileUploadWriteSize)
+//        );
     }
 }

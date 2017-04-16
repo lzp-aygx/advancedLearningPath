@@ -13,6 +13,9 @@
         <start-class>advancedPath.Application</start-class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
         <java.version>1.7</java.version>
         <org.apache.cxf.version>3.1.6</org.apache.cxf.version>
     </properties>

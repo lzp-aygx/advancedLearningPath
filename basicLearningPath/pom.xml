@@ -12,6 +12,9 @@
         <start-class>advancedPath.Application</start-class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
         <java.version>1.7</java.version>
     </properties>
 
@@ -123,6 +126,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.2</version>
         </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
 
         <!--单元测试工具-->
         <dependency>
@@ -146,6 +154,7 @@
             <artifactId>thymeleaf-spring4</artifactId>
             <version>2.1.5.RELEASE</version>
         </dependency>
+
 
     </dependencies>
 </project>
