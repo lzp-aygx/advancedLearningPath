@@ -62,7 +62,7 @@ public class SpringMVCContext extends WebMvcConfigurerAdapter{
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         //addResourceHandler:指定对外暴露的访问地址
         //addResourceLocations:指定文件放置的目录
-        registry.addResourceHandler("/staticResources/**").addResourceLocations("classpath:/staticResources/");
+        //registry.addResourceHandler("/staticResources/**").addResourceLocations("classpath:/staticResources/");
     }
 
     /**通过重写addInterceptors方法来配置拦截器*/
