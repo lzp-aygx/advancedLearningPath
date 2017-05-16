@@ -17,11 +17,11 @@
 package study.ACtiveMQ;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.command.ActiveMQTopic;
+import org.apache.activemq.command.ActiveMQQueue;
 
 import javax.jms.*;
 
-class Publisher {
+class QueueListener {
 
     public static void main(String []args) throws JMSException {
 
@@ -29,38 +29,18 @@ class Publisher {
         String password = env("ACTIVEMQ_PASSWORD", "user");
         String host = env("ACTIVEMQ_HOST", "localhost");
         int port = Integer.parseInt(env("ACTIVEMQ_PORT", "61616"));
-        String destination = arg(args, 0, "event");
-
-        int messages = 10000;
-        int size = 256;
-
-        String DATA = "abcdefghijklmnopqrstuvwxyz";
-        String body = "";
-        for( int i=0; i < size; i ++) {
-            body += DATA.charAt(i%DATA.length());
-        }
+        String destination = arg(args, 0, "foo.bar");
 
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://" + host + ":" + port);
 
-        Connection connection = factory.createConnection(user, password);
+        Connection connection = factory.createConnection();
         connection.start();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        Destination dest = new ActiveMQTopic(destination);
-        MessageProducer producer = session.createProducer(dest);
-        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+        Destination dest = new ActiveMQQueue(destination);
 
-        for( int i=1; i <= messages; i ++) {
-            TextMessage msg = session.createTextMessage(body);
-            msg.setIntProperty("id", i);
-            producer.send(msg);
-            if( (i % 1000) == 0) {
-                System.out.println(String.format("Sent %d messages", i));
-            }
-        }
-
-        producer.send(session.createTextMessage("SHUTDOWN"));
-        connection.close();
-
+        MessageConsumer consumer = session.createConsumer(dest);
+        System.out.println("Waiting for messages...");
+        consumer.setMessageListener(new MyMessageListener());
     }
 
     private static String env(String key, String defaultValue) {
@@ -76,5 +56,4 @@ class Publisher {
         else
             return defaultValue;
     }
-
 }
