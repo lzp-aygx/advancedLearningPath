@@ -1,5 +1,6 @@
 package study.springMVC;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,11 @@ import study.springMVC.entity.Product;
  * Created by lizhupeng on 2017/1/11.
  */
 
+/**
+ * 标记一下下面没有例子请求数据获取的参数，其中SessionAttributes和@CookieValue只是使用在类级别上
+ *@ModelAttribute 、 @SessionAttributes 和 @CookieValue
+ *可以获取对应的Model属性、Session属性和Cookie属性
+ * */
 @Controller
 public class IndexController {
     /**
@@ -32,7 +38,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/index/operator")
-    public String getParam(Model model, @RequestParam String operator) {
+    public String getParam(Model model, @RequestParam(name = "operator" ,required = false) String operator) {
         System.out.println(operator);
         model.addAttribute("msg", "Welcome " + operator);
         return "index";
@@ -62,5 +68,13 @@ public class IndexController {
         p1.setProductCategory("ssss");
         p1.setProductId("11");
         return p1;
+    }
+
+    //可以通过@RequestHeader来获取HTTP请求的消息头的信息
+    @RequestMapping(value = "/index/requestHeader" ,produces = "text/html;charset=UTF-8")
+    public String getRequestHeader(Model model,@RequestHeader HttpHeaders headers){
+        headers.toString();
+        model.addAttribute("msg", "header:" + headers.getAccept() + headers.getLocation());
+        return "index";
     }
 }
