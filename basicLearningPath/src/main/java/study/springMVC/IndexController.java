@@ -44,6 +44,7 @@ public class IndexController {
         return "index";
     }
 
+    //重定向,是的重定向的Controller可以获取当前请求的Post数据
     @RequestMapping(value = "/index/redirect")
     public String redirect(Model model) {
         return "redirect:/";

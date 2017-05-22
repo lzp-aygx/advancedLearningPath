@@ -5,9 +5,11 @@
     <title>fileUpload</title>
 </head>
 <body>
-    <form action="fileUploadController" enctype="multipart/form-data" method="post">
+    <h1>Please upload a file</h1>
+    <form action="/fileUploadController" enctype="multipart/form-data" method="post">
+        <input type="text" name="name"/>
         <input type="file" name="profilePicture" /><br/>
-        <input type="submit" value="upload" />
+        <input type="submit"/>
     </form>
 </body>
 </html>
