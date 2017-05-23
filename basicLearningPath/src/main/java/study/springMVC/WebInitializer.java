@@ -5,9 +5,12 @@ package study.springMVC;
  */
 
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import study.springAdvancedFeatures.SpringAdvancedFeaturesContext;
 
+import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
 /**
@@ -47,8 +50,16 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         //为DispatcherServlet配置multipart解析器,其中解析器的构造函数的参数分别为:
         //1.临时目录,2.单个上传文件的最大容量
         //3.整个multipart请求的最大总容量,4.上传过程中写入临时目录的开始大小
-//        registration.setMultipartConfig(
-//                new MultipartConfigElement("E:/fileUpload/temp", fileMAXSize, multipartMAXSize, fileUploadWriteSize)
-//        );
+        registration.setMultipartConfig(
+                new MultipartConfigElement("E:\\IdeaWorkSpace\\fileUpload\\", fileMAXSize, multipartMAXSize, fileUploadWriteSize)
+        );
+    }
+
+    protected Filter[] getServletFilters(){
+        //配置编码过去器
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return new Filter[] {characterEncodingFilter};
     }
 }

@@ -3,8 +3,6 @@ package study.springMVC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -47,19 +45,21 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 //继承WebMvcConfigurerAdapter可以重写其方法进而可以对SpringMVC进行配置
 public class SpringMVCContext extends WebMvcConfigurerAdapter {
 
+
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/fileUpload").setViewName("/fileUpload");
     }
 
 
-    @Bean
-    public MultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver =
-                new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(2097152);
-        multipartResolver.setDefaultEncoding("UTF-8");
-        return multipartResolver;
-    }
+//    @Bean
+//    public MultipartResolver multipartResolver() {
+//        CommonsMultipartResolver multipartResolver =
+//                new CommonsMultipartResolver();
+//        multipartResolver.setMaxUploadSize(2097152);
+//        multipartResolver.setDefaultEncoding("UTF-8");
+//        multipartResolver.setMaxInMemorySize(1024);
+//        return multipartResolver;
+//    }
 
     /**配置JSP视图解析器*/
 //    public void configureViewResolvers(ViewResolverRegistry registry){
@@ -86,6 +86,8 @@ public class SpringMVCContext extends WebMvcConfigurerAdapter {
     public ViewResolver viewResolver(SpringTemplateEngine templateEngine) {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine);
+        viewResolver.setOrder(1);
+        viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
 
@@ -96,12 +98,13 @@ public class SpringMVCContext extends WebMvcConfigurerAdapter {
         return templateEngine;
     }
 
-    @Bean
+    @Bean(name = "templateResolver")
     public TemplateResolver templateResolver() {
         TemplateResolver templateResolver = new ServletContextTemplateResolver();
         templateResolver.setPrefix("/WEB-INF/classes/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
+        templateResolver.setCharacterEncoding("UTF-8");
         return templateResolver;
     }
 

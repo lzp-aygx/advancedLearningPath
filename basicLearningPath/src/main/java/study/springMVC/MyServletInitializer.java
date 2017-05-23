@@ -20,5 +20,9 @@ public class MyServletInitializer implements WebApplicationInitializer {
 //                servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
 //        servlet.addMapping("/");
 //        servlet.setLoadOnStartup(1);
+//        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+//        encodingFilter.setEncoding("UTF-8");
+//        encodingFilter.setForceEncoding(true);
+//        servletContext.addFilter("/*",encodingFilter);
     }
 }
