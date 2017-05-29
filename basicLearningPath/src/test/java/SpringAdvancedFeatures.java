@@ -5,6 +5,8 @@ import study.springAdvancedFeatures.RunTimeInject;
 import study.springAdvancedFeatures.SpringAdvancedFeaturesContext;
 import study.springAdvancedFeatures.SpringAware;
 import study.springAdvancedFeatures.aop.Performance;
+import study.springAdvancedFeatures.persistent.User;
+import study.springAdvancedFeatures.persistent.UserMapper;
 
 /**
  * Created by lizhupeng on 2017/1/10.
@@ -31,6 +33,13 @@ public class SpringAdvancedFeatures {
 
         Performance performance = context.getBean(Performance.class);
         performance.perform("周杰伦",5);
+
+
+        UserMapper userMapper = context.getBean(UserMapper.class);
+        System.out.println(userMapper.getUser(1));
+        System.out.println(userMapper.getUsers());
+        User user1 = new User(8,"金明","8888","leeman",25);
+//        System.out.println(userMapper.insertUser(user1));
 
 
 
