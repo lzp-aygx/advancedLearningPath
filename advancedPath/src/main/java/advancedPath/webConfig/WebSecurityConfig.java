@@ -26,6 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+        //关闭spring Security 4 对post处理的防跨域请求.
+        http.csrf().disable();
+        //配置个性化安全配置的拦截器
+//        http.addFilterBefore(customizeFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
 
     //在内存中分别配置两个用户,角色是USER
@@ -41,4 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception{
         web.ignoring().antMatchers("/resources/static/**");
     }
+
+
 }
