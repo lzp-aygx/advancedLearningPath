@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: eurekaClient-01
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+      statusPageUrlPath: ${management.context-path}/info
+      healthCheckUrlPath: ${management.context-path}/health
+      #≈‰÷√instanceIdœ‘ æIP
+      instance-id:  ${spring.cloud.client.ipAddress}:${server.port}

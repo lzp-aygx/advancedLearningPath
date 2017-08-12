@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<!--当定义了ng-app的时候没有编写模块化js,页面的angular会失效-->
+<div ng-app="myApp1">
+    <!--controller的定义和使用-->
+    <div ng-controller="c1">
+        firstName: <input type="text" ng-model="firstName">
+        lastName: <input type="text" ng-model="lastName">
+        <h1>Hello {{firstName + " " + lastName}}</h1>
+    </div>
+    <!--使用ng-repeat来操作应用内的集合数据-->
+    <div ng-init="names=['Jani','Hege','Kai']">
+        <p>使用 ng-repeat 来循环数组</p>
+        <ul>
+            <li ng-repeat="x in names">
+                {{ x }}
+            </li>
+        </ul>
+    </div>
+    <!--使用.directive来自定义指令-->
+    <test-directive></test-directive>
+    <div test-directive></div>
+    <div class="test-directive"></div>
+    <!-- directive : test-directive -->
+    <!--表单校验-->
+    <form name="myForm">
+        Email:
+        <input type="email" name="myEmail" ng-model="email">
+        <span ng-show="myForm.myEmail.$error.email">请输出正确的邮箱账号</span>
+    </form>
+</div>
+</body>
+<script>
+    var app = angular.module('myApp1', []);
+    app.controller('c1', function ($scope) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+    });
+    app.directive("testDirective", function () {
+        return {
+            restrict: 'EACM',//元素E,属性A,类名C,注解M,不知道为森么当前版本注解失效
+            template: "<h1>this is my custom directive</h1>"
+        };
+    });
+</script>
+</html>
