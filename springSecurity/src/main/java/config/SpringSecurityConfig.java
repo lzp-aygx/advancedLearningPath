@@ -32,7 +32,6 @@ public class SpringSecurityConfig {
     @Configuration
     @Order(1)
     public static class ApiWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
-
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.antMatcher("/api/**").authorizeRequests().anyRequest().hasRole("USER")

@@ -46,9 +46,6 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 public class SpringMVCContext extends WebMvcConfigurerAdapter {
 
 
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/fileUpload").setViewName("/fileUpload");
-    }
 
 
 //    @Bean
