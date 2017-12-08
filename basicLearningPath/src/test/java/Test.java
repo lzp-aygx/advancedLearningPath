@@ -1,4 +1,5 @@
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by lizhupeng on 2017/4/11.
@@ -6,11 +7,11 @@ import java.io.UnsupportedEncodingException;
 public class Test {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String v1 = "名";
-        System.out.println(v1.getBytes("UTF-8").length);
-        System.out.println(v1.getBytes("GBK").length);
-        System.out.println(v1.getBytes("GB2312").length);
-        System.out.println(v1.getBytes("ASCII").length);
-        System.out.println(v1.getBytes("ISO-8859-1").length);
+        String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(timestamp));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long timestamp = sdf.parse(dateTime).getTime();
+        String dateTime = sdf.format(new java.util.Date(timestamp));
+
     }
 }

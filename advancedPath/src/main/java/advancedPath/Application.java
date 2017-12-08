@@ -21,6 +21,7 @@ public class Application {
         SpringApplication app = new SpringApplication(Application.class);
         //设置SpringApplication的Banner,当前设置是屏蔽了Banner,也可以在配置文件上关闭
         //app.setBannerMode(Banner.Mode.OFF);
+        app.addInitializers();
         app.run(args);
         //SpringApplication.run(Application.class, args);
     }

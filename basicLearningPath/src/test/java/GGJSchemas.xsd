@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:complexType name="sendOrderType">
+		<xs:sequence>
+			<xs:element name="type" type="xs:int" minOccurs="0"/>
+			<xs:element name="orderNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="expressName" type="xs:string" minOccurs="0"/>
+			<xs:element name="expressNo" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="orderRequestType">
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="endTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="page" type="xs:string" minOccurs="0"/>
+			<xs:element name="pageSize" type="xs:string" minOccurs="0"/>
+			<xs:element name="status" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderItemType">
+		<xs:sequence>
+			<xs:element name="itemName" type="xs:string" minOccurs="0"/>
+			<xs:element name="itemCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="salesPrice" type="xs:string" minOccurs="0"/>
+			<xs:element name="itemCount" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="receiverType">
+		<xs:sequence>
+			<xs:element name="receiverName" type="xs:string" minOccurs="0"/>
+			<xs:element name="receiverMobile" type="xs:string" minOccurs="0"/>
+			<xs:element name="receiverIdCard" type="xs:string" minOccurs="0"/>
+			<xs:element name="provinceName" type="xs:string" minOccurs="0"/>
+			<xs:element name="provinceCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="cityName" type="xs:string" minOccurs="0"/>
+			<xs:element name="cityCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="districtName" type="xs:string" minOccurs="0"/>
+			<xs:element name="districtCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="detailAddress" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="orderType">
+		<xs:sequence>
+			<xs:element name="number" type="xs:string" minOccurs="0"/>
+			<xs:element name="type" type="xs:string" minOccurs="0"/>
+			<xs:element name="status" type="xs:string" minOccurs="0"/>
+			<xs:element name="createTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="payTime" type="xs:string" minOccurs="0"/>
+			<xs:element name="totalPrice" type="xs:string" minOccurs="0"/>
+			<xs:element name="realPrice" type="xs:string" minOccurs="0"/>
+			<xs:element name="freight" type="xs:string" minOccurs="0"/>
+			<xs:element name="couponPrice" type="xs:string" minOccurs="0"/>
+			<xs:element name="exportStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="checkStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="freezeStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="payChannel" type="xs:string" minOccurs="0"/>
+			<xs:element name="payTid" type="xs:string" minOccurs="0"/>
+			<xs:element name="remark" type="xs:string" minOccurs="0"/>
+			<xs:element name="receiver" type="receiverType" minOccurs="0"/>
+			<xs:element name="items" type="orderItemType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getTradeOrderResponse">
+		<xs:sequence>
+			<xs:element name="success" type="xs:string" minOccurs="0"/>
+			<xs:element name="orders" type="orderType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="totalCount" type="xs:int" minOccurs="0"/>
+			<xs:element name="currentCount" type="xs:int" minOccurs="0"/>
+			<xs:element name="maxPage" type="xs:int" minOccurs="0"/>
+			<xs:element name="errCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="errMsg" type="xs:string" minOccurs="0"/>
+			<xs:element name="detail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getTradeOrderRequest">
+		<xs:sequence>
+			<xs:element name="params" type="orderRequestType" minOccurs="0"/>
+			<xs:element name="partner" type="xs:string" minOccurs="0"/>
+			<xs:element name="timestamp" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="updateDispatchedRequest">
+		<xs:sequence>
+			<xs:element name="params" type="sendOrderType" minOccurs="0"/>
+			<xs:element name="partner" type="xs:string" minOccurs="0"/>
+			<xs:element name="timestamp" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="updateDispatchedResponse">
+		<xs:sequence>
+			<xs:element name="success" type="xs:string" minOccurs="0"/>
+			<xs:element name="errCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="errMsg" type="xs:string" minOccurs="0"/>
+			<xs:element name="detail" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="getTradeOrderResponse11">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="success" type="xs:string" minOccurs="0"/>
+				<xs:element name="orders" type="orderType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="totalCount" type="xs:int" minOccurs="0"/>
+				<xs:element name="currentCount" type="xs:int" minOccurs="0"/>
+				<xs:element name="maxPage" type="xs:int" minOccurs="0"/>
+				<xs:element name="errCode" type="xs:string" minOccurs="0"/>
+				<xs:element name="errMsg" type="xs:string" minOccurs="0"/>
+				<xs:element name="detail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getTradeOrderRequest"  type="getTradeOrderRequest"/>
+	<xs:element name="getTradeOrderResponse" type="getTradeOrderResponse"/>
+	<xs:element name="updateDispatchedRequest" type="updateDispatchedRequest"/>
+	<xs:element name="updateDispatchedResponse" type="updateDispatchedResponse"/>
+</xs:schema>
