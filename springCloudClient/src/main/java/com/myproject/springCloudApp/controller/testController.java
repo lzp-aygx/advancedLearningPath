@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by lizhupeng on 2017/12/6.
  */
 @RestController
-public class testController {
+public class TestController {
 
     @ApiOperation(value="测试", notes="Hello world")
     @RequestMapping(value = "/hello" ,method = RequestMethod.GET)
