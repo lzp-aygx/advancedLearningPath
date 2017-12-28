@@ -18,15 +18,15 @@ public class UserController {
         return "1";
     }
 
-//    @ApiOperation(value = "获取用户", notes = "添加用户")
-//    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-//    public User getUser(@PathVariable String id) {
-//        User user = new User();
-//        user.setId("1");
-//        user.setPhone("000000");
-//        user.setUserName("张学友");
-//        return user;
-//    }
+    @ApiOperation(value = "获取用户", notes = "添加用户")
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public User getUser(@PathVariable Long id) {
+        User user = new User();
+        user.setId("1");
+        user.setPhone("000000");
+        user.setUserName("张学友");
+        return user;
+    }
 
     @ApiOperation(value = "删除用户", notes = "添加用户")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)

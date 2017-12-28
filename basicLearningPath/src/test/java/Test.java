@@ -1,5 +1,6 @@
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lizhupeng on 2017/4/11.
@@ -7,11 +8,15 @@ import java.text.SimpleDateFormat;
 public class Test {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(timestamp));
+        List<String> stringList = new ArrayList<>();
+        stringList.add("123");
+        stringList.add("1234");
+//        System.out.println(stringList.size());
+//        System.out.println(stringList.get(0));
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        long timestamp = sdf.parse(dateTime).getTime();
-        String dateTime = sdf.format(new java.util.Date(timestamp));
+        for (int i = 0 ; i< stringList.size();i++){
+            System.out.println(stringList.get(i));
+        }
 
     }
 }

@@ -35,11 +35,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!--&lt;!&ndash;引入中央配置中心依赖&ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-config</artifactId>-->
-        <!--</dependency>-->
         <!--增加eureka-server的依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

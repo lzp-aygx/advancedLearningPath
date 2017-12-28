@@ -10,10 +10,11 @@ public class testSHA1 {
 
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
+        String extattr = "{\"attrs\": [{\"name\": \"工号\",\"value\": \"LM000343\"},{\"name\": \"公司\",\"value\": \"理文\"}]}";
 
-        String path = "http://parter.api.chuchujie.com/sqe/Order/get_order_list_v2";
-//        System.out.println(getsha1("40711","59ef98cc310e37a068bd2f0c07cceaf8cee6981c","1508471040711"));
-        System.out.println(getsha1("4071159ef98cc310e37a068bd2f0c07cceaf8cee6981c1508471040711"));
+
+
+
 
 
     }
