@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter{
 
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         //打包成可运行的jar包的时候无法运行下面定于的Controller
         //配置模板页webSocket.html的访问地址为/ws

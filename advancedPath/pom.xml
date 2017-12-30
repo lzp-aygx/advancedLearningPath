@@ -107,29 +107,12 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.2.2</version>
+            <version>2.6.1</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.2.2</version>
-        </dependency>
-
-        <!--CXF依赖注入-->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>${org.apache.cxf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-            <version>${org.apache.cxf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-            <version>${org.apache.cxf.version}</version>
+            <version>2.6.1</version>
         </dependency>
 
     </dependencies>

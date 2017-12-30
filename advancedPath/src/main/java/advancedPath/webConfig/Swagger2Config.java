@@ -23,17 +23,22 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
+                //为当前包路径
                 .apis(RequestHandlerSelectors.basePackage("advancedPath.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
+    //构建 api文档的详细信息函数
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
-                .description("使用Swagger2完成对RestController的拦截")
-//                .termsOfServiceUrl("http://blog.didispace.com/")
-                .contact("lzp")
+                //页面标题
+                .title("Spring Boot 测试使用 Swagger2 构建RESTful API")
+                //创建人
+//                .contact(new Contact("lzp", "www.leemanpaper.com", "ricky_feng@163.com"))
+                //版本号
                 .version("1.0")
+                //描述
+                .description("API 描述")
                 .build();
     }
 }

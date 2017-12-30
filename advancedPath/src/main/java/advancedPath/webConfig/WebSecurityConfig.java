@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/login").permitAll() //配置根路径和/login路径为不拦截路径
@@ -33,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     //在内存中分别配置两个用户,角色是USER
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("lzp").password("lzp").roles("USER")
@@ -42,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     //忽略静态资源的拦截
+    @Override
     public void configure(WebSecurity web) throws Exception{
         web.ignoring().antMatchers("/resources/static/**");
     }

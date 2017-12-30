@@ -54,7 +54,7 @@ public class testConsumer {
         user.setPhone("13794888475");
         user.setUserName("李柱鹏");
         testFeignService.postUser(user);
-        System.out.println(discoveryClient);
+        System.out.println(discoveryClient.getInstances("EUREKACLIENT-01"));
         String response = testFeignService.deleteUser("1");
         return response;
     }
