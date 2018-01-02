@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableFeignClients
-//@EnableDiscoveryClient
 @EnableCircuitBreaker
 public class SpringCloudConsumerApplication {
 

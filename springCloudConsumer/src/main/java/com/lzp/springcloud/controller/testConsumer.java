@@ -30,11 +30,11 @@ public class testConsumer {
 
     @RequestMapping(value = "/testConsumer",method = RequestMethod.GET)
     public User testConsumer(){
-        UriComponents uriComponents = UriComponentsBuilder.fromUriString("http://EUREKACLIENT-01/user/1").build().encode();
+        UriComponents uriComponents = UriComponentsBuilder.fromUriString("http://localhost:9993/user/1").build().encode();
         URI uri = uriComponents.toUri();
         HttpHeaders headers = new HttpHeaders();
         User user = restTemplate.getForEntity(uri,User.class).getBody();
-        System.out.println(restTemplate.getForEntity("http://EUREKACLIENT-01/user/1",String.class).getBody() + "   " );
+        System.out.println(restTemplate.getForEntity("http://localhost:9993/user/1",String.class).getBody() + "   " );
         return user;
     }
 
