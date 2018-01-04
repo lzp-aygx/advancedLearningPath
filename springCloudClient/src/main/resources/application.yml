@@ -1,6 +1,11 @@
 spring:
   application:
     name: eurekaClient-01
+  cloud:
+    config:
+      uri: http://localhost:8000
+      profile: test
+      label: master
 
 eureka:
   client:
@@ -9,6 +14,3 @@ eureka:
   instance:
     status-page-url-path: /swagger-ui.html
     hostname: localhost
-
-server:
-  port: 9992

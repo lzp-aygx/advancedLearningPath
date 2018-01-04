@@ -15,6 +15,12 @@ public class TestController {
     @Value("${server.port}")
     private String port;
 
+    @Value("${word}")
+    private String word;
+
+    @Value("${word11}")
+    private String word11;
+
     @ApiOperation(value="测试", notes="Hello world")
     @RequestMapping(value = "/hello" ,method = RequestMethod.GET)
     public String hello() {
@@ -25,6 +31,18 @@ public class TestController {
             e.printStackTrace();
         }
         return "Hello world " + port;
+    }
+
+    @ApiOperation(value="测试", notes="Hello world")
+    @RequestMapping(value = "/word" ,method = RequestMethod.GET)
+    public String word() {
+        return this.word;
+    }
+
+    @ApiOperation(value="测试", notes="Hello world")
+    @RequestMapping(value = "/word11" ,method = RequestMethod.GET)
+    public String word11() {
+        return this.word11;
     }
 
 }
