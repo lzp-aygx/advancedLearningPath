@@ -12,11 +12,6 @@ public class testSHA1 {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         String extattr = "{\"attrs\": [{\"name\": \"工号\",\"value\": \"LM000343\"},{\"name\": \"公司\",\"value\": \"理文\"}]}";
 
-
-
-
-
-
     }
 
 

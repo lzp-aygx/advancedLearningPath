@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/login").permitAll() //配置根路径和/login路径为不拦截路径
+                .antMatchers("/", "/*").permitAll() //配置根路径和/login路径为不拦截路径
                 .and()
                 .formLogin()
                 .loginPage("/login")//配置登录页面
